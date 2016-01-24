@@ -1,3 +1,2 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
-
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+This are the sources of the CS5610 2016 Spring Semester.
+Openshift: http://cs5610spring2016-zhiyuanyang.rhcloud.com
