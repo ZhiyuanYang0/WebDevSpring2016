@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Home</title>
+    <title>Profile</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -51,18 +51,59 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Admin</a></li>
                 <li><a href="#">Forms</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-            <h1>Welcome !</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-            </p>
+            <h1>Profile</h1>
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Username: </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputName" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">Password: </label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputFirstName" class="col-sm-2 control-label">First Name: </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputFirstName" placeholder="First Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastName" class="col-sm-2 control-label">Last Name: </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputLastName" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a href="profile.html" class="btn btn-default btn-block" role="button">Update</a>
+                    </div>
+                </div>
+
+            </form>
 
         </div>
     </div>
