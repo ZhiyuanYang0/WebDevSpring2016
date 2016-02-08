@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Admin</title>
+    <title>Forms</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -53,79 +53,71 @@
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li class="active"><a href="admin.html">Admin</a></li>
-                <li><a href="forms.html">Forms</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active"><a href="forms.html">Forms</a></li>
             </ul>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-            <h1>Admin</h1>
+            <h1>Forms</h1>
 
-            <h3>Users</h3>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+                <li role="presentation"><a href="form-fields.html">Fields</a></li>
+            </ul>
 
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Username</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Password</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Role</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span> Form Name</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span> Action</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     <tr>
-                        <td><input type="text" class="form-control" placeholder="username"></td>
-                        <td><input type="password" class="form-control" placeholder="password"></td>
-                        <td><input type="text" class="form-control" placeholder="role1, role2"></td>
+                        <td><input type="text" class="form-control" placeholder="name"></td>
                         <td>
                             <div>
-
-                                <div class="col-sm-6">
-                                    <a href="register.html">
-                                    <span class="glyphicon glyphicon-plus"></span>
+                                <div class="col-xs-6">
+                                    <a href="form-fields.html">
+                                        <span class="glyphicon glyphicon-plus"></span>
                                     </a>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a href="admin.html">
-                                    <span class="glyphicon glyphicon-ok"></span>
+                                <div class="col-xs-6">
+                                    <a href="forms.html">
+                                        <span class="glyphicon glyphicon-ok"></span>
                                     </a>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>alice</td>
-                        <td></td>
-                        <td>student</td>
+                        <td>Registration Form</td>
                         <td>
                             <div>
-                                <a href="admin.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                                <a href="profile.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
+                                <a href="forms.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
+                                <a href="form-fields.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>bob</td>
-                        <td></td>
-                        <td>faculty | admin</td>
+                        <td>Contact List</td>
                         <td>
                             <div>
-                                <a href="admin.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                                <a href="profile.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
+                                <a href="forms.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
+                                <a href="form-fields.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>charlie</td>
-                        <td></td>
-                        <td></td>
+                        <td>To Do List</td>
                         <td>
                             <div>
-                                <a href="admin.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                                <a href="profile.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
+                                <a href="forms.html"><div class="col-xs-6 glyphicon glyphicon-remove"></div></a>
+                                <a href="form-fields.html"><div class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
                             </div>
                         </td>
                     </tr>
