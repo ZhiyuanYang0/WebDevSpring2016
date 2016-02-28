@@ -1,0 +1,35 @@
+<script src = "../js/jquery-1.12.1.min.js">
+</script>
+
+<script>
+    $(init);
+
+    function init(){
+        $("#p1").click(p1Clicked);
+        $("#ADD").click(addAandB);
+    }
+
+    function p1Clicked(){
+        $("body").append("<p>Hello</p>");
+    }
+
+    function addAandB(){
+        var a = $("#A").val();
+        var b = $("#B").val();
+        a = parseInt(a);
+        b = parseInt(b);
+        var c = a + b;
+        alert(c);
+        $("#C").val(c);
+    }
+
+</script>
+
+<h1>Handling events with jQuery</h1>
+
+<p id ="p1">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+
+<input id = "A"/>
+<input id = "B"/>
+<button id = "ADD">Add A and B</button>
+<input id = "C"/>

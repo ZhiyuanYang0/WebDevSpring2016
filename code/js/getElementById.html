@@ -1,0 +1,19 @@
+<h1 id = "hello">Hello</h1>
+
+<script>
+    var html = document.getElementById("hello").innerHTML;
+//    alert(html);
+    document.getElementById("hello").innerHTML = "Goodbye"
+</script>
+
+<input type="text" id = "age" value = "23"/>
+<input type="text" id = "name" value = "Bob"/>
+
+<script>
+    var age = document.getElementById("age");
+    var name = document.getElementById("name").value;
+    console.log(age.value);
+    console.log(name);
+
+    age.value++;
+</script>

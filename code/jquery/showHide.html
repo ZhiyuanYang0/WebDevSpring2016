@@ -1,0 +1,47 @@
+<script src = "../js/jquery-1.12.1.min.js">
+</script>
+
+<script>
+    $(init);
+
+    var p1Showing = true;
+    var p2Showing = true;
+
+    function init() {
+        $("#t1").click(t1Click);
+        $("#t2").click(t2Click);
+
+        function t1Click() {
+            if (p1Showing) {
+                $("#p1").hide();
+            } else {
+                $("#p1").show();
+            }
+            p1Showing = !p1Showing;
+        }
+
+        function t2Click() {
+            if (p2Showing) {
+                $("#p2").hide();
+            } else {
+                $("#p2").show();
+            }
+            p2Showing = !p2Showing;
+        }
+    }
+</script>
+
+<h1>Showing and Hiding content with jQuery</h1>
+
+<h2 id = "t1">Title 1</h2>
+<p id = "p1">
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+</p>
+
+<h2 id = "t2">Title 2</h2>
+
+<p id="p2">
+
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+</p>

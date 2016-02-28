@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search OMDBAPI</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="js/app.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Search OMDB API</h1>
+        <div class="row">
+
+            <div class="col-xs-6">
+                <h2>Search</h2>
+                <input value="Star Wars" id="movieTitleTxt" class="form-control" placeholder="Avatar"/>
+
+                <button id="searchMovieBtn" class="btn btn-primary btn-block">Search Movie</button>
+
+                <h2>Search Results</h2>
+                <table id="searchResults" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>IMDB ID</th>
+                        <th>Poster</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-xs-6">
+                <h2 id="detailsTitle">Title</h2>
+                <img id="detailsPoster"/><br/>
+                Director: <span id="detailsDirector"></span>
+                <h3>Plot</h3>
+                <p id="detailsPlot"></p>
+                <h3>Actors</h3>
+                <ul id="detailsActors">
+
+                </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+</html>
