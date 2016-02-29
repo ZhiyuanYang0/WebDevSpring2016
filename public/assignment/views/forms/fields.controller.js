@@ -1,3 +1,10 @@
-/**
- * Created by Samuel on 2/28/16.
- */
+(function () {
+    "use strict";
+    angular
+        .module("FormBuilderApp")
+        .controller("FieldsController", FieldsController);
+
+    function FieldsController() {
+
+    }
+})();

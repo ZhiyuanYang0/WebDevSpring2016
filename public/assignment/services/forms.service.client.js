@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService() {
+    function FormService($rootScope) {
         var forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo", "userId": 123},
@@ -25,15 +25,13 @@
                 title : form.title,
                 userId : userId
             };
-            froms.push(newForm);
+            forms.push(newForm);
             callback(newForm);
         }
 
         function findAllFormsForUser(userId, callback) {
             var userForms = [];
-            console.log(userId);
             for (var i = 0; i < forms.length; i++) {
-                console.log(forms[i]._id);
                 if (forms[i].userId == userId) {
                     userForms.push(forms[i]);
                 }
@@ -51,13 +49,11 @@
         }
 
         function updateFormById(formId, newForm, callback) {
-            for(var i = 0; i < forms.length; i++) {
-                if(forms[i]._id == formId) {
-                    forms[i] = {
-                        _id: formId,
-                        title: newForm.title,
-                        userId: newForm.userId
-                    };
+            for(var i = 0; i< forms.length; i++){
+                if(forms[i]._id == formId){
+                    forms[i].title = newForm.title;
+                    console.log(forms[i]);
+                    console.log(forms);
                     callback(forms[i]);
                 }
             }

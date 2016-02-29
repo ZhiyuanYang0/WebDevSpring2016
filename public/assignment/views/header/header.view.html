@@ -11,12 +11,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': $location.url() == '/register'}"><a href="#/register">Register</a></li>
-                <li ng-class="{'active': $location.url() == '/login'}"><a href="#/login">Login</a></li>
-                <li ng-class="{'active': $location.url() == '/username'}"><a href="#/username">Username</a></li>
-                <li ng-class="{'active': $location.url() == '/logout'}"><a href="#/logout">Logout</a></li>
-                <li ng-class="{'active': $location.url() == '/profile'}"><a href="#/profile">Profile</a></li>
-                <li ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-show="!isUser()" ng-class="{'active': $location.url() == '/register'}"><a href="#/register">Register</a></li>
+                <li ng-show="!isUser()" ng-class="{'active': $location.url() == '/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="isUser()" ng-click="logout()" ng-class="{'active': $location.url() == '/logout'}"><a href="#/logout">Logout</a></li>
+                <li ng-show="isUser()" ng-class="{'active': $location.url() == '/profile'}"><a href="#/profile">{{$root.user.username}}</a></li>
+                <li ng-show="isAdmin()" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">

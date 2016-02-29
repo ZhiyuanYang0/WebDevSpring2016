@@ -18,17 +18,17 @@
 
             <tbody>
             <tr>
-                <td><input id="selectForm"  type="text" class="form-control" placeholder="name"></td>
+                <td><input ng-model="form.title" id="formTitle"  type="text" class="form-control" ng-value="Title" placeholder="Title"></td>
                 <td>
                     <div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-3">
                             <a ng-click="addForm()">
-                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-plus" style="font-size: 30px;"></span>
                             </a>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-3">
                             <a ng-click="updateForm()">
-                                <span class="glyphicon glyphicon-ok"></span>
+                                <span class="glyphicon glyphicon-ok" style="font-size: 30px;"></span>
                             </a>
                         </div>
                     </div>
@@ -37,12 +37,21 @@
             <tr ng-repeat="form in currentForms">
                 <td>{{form.title}}</td>
                 <td>
-                    <a ng-click="deleteForm($index)">
-                        <scan class="glyphicon glyphicon-remove"></scan>
-                    </a>
-                    <a ng-click="selectForm($index)">
-                        <scan class="glyphicon glyphicon-pencil"></scan>
-                    </a>
+                    <div>
+                        <div class="col-xs-3">
+                            <a ng-click="deleteForm($index)">
+                                <scan class="glyphicon glyphicon-remove" style="font-size: 30px;"></scan>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-xs-3">
+                            <a ng-click="selectForm($index)">
+                                 <scan class="glyphicon glyphicon-pencil" style="font-size: 30px;"></scan>
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
