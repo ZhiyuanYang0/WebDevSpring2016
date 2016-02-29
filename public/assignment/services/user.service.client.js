@@ -14,13 +14,26 @@
         ];
 
         var service = {
-            //findUserByCredentials: findUserByCredentials,
-            //findAllUsers: findAllUsers,
+            findUserByCredentials: findUserByCredentials,
+            findAllUsers: findAllUsers,
             createUser: createUser,
-            //deleteUserById: deleteUserById,
-            //updateUser: updateUser
+            deleteUserById: deleteUserById,
+            updateUser: updateUser
         };
         return service;
+
+        function findUserByCredentials(username, password, callback) {
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].username == username && users[i].password == password) {
+                    callback(users[i]);
+                    //console.log("findUserByCredentials: " + user[i]);
+                }
+            }
+        }
+
+        function findAllUsers(callback) {
+             callback(users);
+        }
 
         function createUser(user, callback) {
             var newUser = {
@@ -32,6 +45,32 @@
             users.push(newUser);
             callback(newUser);
             console.log(users);
+        }
+
+        function deleteUserById(userId, callback) {
+            for (var i = 0; i < users.length; i++) {
+                if (users[i]._id == userId) {
+                    users.splice(i, 1);
+                }
+                callback(users);
+            }
+        }
+
+        function updateUser(userId, user, callback) {
+            for (var i = 0; i < users.length; i++) {
+                if (users[i]._id == userId) {
+                    users[i] = {
+                        _id: userId,
+                        username: user.username,
+                        password: user.password,
+                        email: user.email,
+                        firstName: user.firstName,
+                        lastName: user.lastName
+                    }
+                    callback(users[i]);
+                }
+            }
+            callback();
         }
     }
 })();

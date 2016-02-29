@@ -8,7 +8,7 @@
         $scope.register = register;
 
         function register() {
-            UserService.createUser($scope.user, function(user) {
+            UserService.createUser($scope.userRegister, function(user) {
                 $rootScope.user = user;
                 $location.url("/profile");
                 console.log("new user: " + user);
