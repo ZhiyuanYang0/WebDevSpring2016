@@ -27,7 +27,6 @@
             $rootScope.user = null;
             $scope.user = null;
             $location.url('home');
-            //console.log("here");
         }
     }
 })();

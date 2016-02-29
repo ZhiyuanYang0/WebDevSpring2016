@@ -12,12 +12,25 @@
         $scope.form = {
             title: null
         }
-        currentForms();
 
+
+
+        $scope.access = access;
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
+
+        $scope.access($rootScope);
+
+        function access($rootScope) {
+            if (!$rootScope.user) {
+                alert("Please register or log in.");
+                $location.url("/home");
+            } else {
+                currentForms();
+            }
+        }
 
         function addForm() {
             FormService.createFormForUser($rootScope.user._id, $scope.form, function (newForm) {

@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("AdminController", AdminController)
 
-    function AdminController() {
+    function AdminController($scope, $rootScope, $location) {
 
     }
 })();
