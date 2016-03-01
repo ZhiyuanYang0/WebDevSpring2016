@@ -14,7 +14,6 @@
         }
 
 
-
         $scope.access = access;
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;

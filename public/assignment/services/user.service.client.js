@@ -40,7 +40,8 @@
                 _id:(new Date).getTime(),
                 username: user.username,
                 password: user.password,
-                email: user.email
+                email: user.email,
+                roles: "user"
             };
             users.push(newUser);
             callback(newUser);
@@ -57,20 +58,30 @@
         }
 
         function updateUser(userId, user, callback) {
+            console.log("User: ");
+            console.log(user);
+            console.log("email: " + user.email);
             for (var i = 0; i < users.length; i++) {
                 if (users[i]._id == userId) {
-                    users[i] = {
-                        _id: userId,
-                        username: user.username,
-                        password: user.password,
-                        email: user.email,
-                        firstName: user.firstName,
-                        lastName: user.lastName
+                    if(user.username) {
+                        users[i].username = user.username;
+                    }
+                    if(user.password) {
+                        users[i].password = user.password;
+                    }
+                    if (user.firstName) {
+                        users[i].firstName = user.firstName;
+                    }
+                    if (user.lastName) {
+                        users[i].lastName = user.lastName;
+                    }
+                    if (user.email) {
+                        users[i].email = user.email;
                     }
                     callback(users[i]);
+                    break;
                 }
             }
-            callback();
         }
     }
 })();
