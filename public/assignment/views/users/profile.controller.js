@@ -12,12 +12,22 @@
         $scope.getEmail = getEmail;
         $scope.update = update;
         $scope.profile = {};
+        $scope.error = null;
+        $scope.message = null;
+
 
         function update(profile) {
-            console.log("profile: ");
-            console.log(profile);
+            // same validation as register
+            $scope.error = null;
+            $scope.message = null;
+
             UserService.updateUser($scope.user._id, profile, function(user) {
-                $rootScope.user = user;
+                if (user) {
+                    $scope.message = "User updated successfully";
+                    $rootScope.user = user;
+                } else {
+                    $scope.message = "Unable to update the user";
+                }
 
             })
         }

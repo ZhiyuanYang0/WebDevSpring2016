@@ -13,6 +13,9 @@
             title: null
         }
 
+        //reminder message
+        $scope.error = null;
+        $scope.message = null;
 
         $scope.access = access;
         $scope.addForm = addForm;
@@ -32,24 +35,51 @@
         }
 
         function addForm() {
+            // same validation as register
+            $scope.error = null;
+            $scope.message = null;
+
             FormService.createFormForUser($rootScope.user._id, $scope.form, function (newForm) {
-                $scope.currentForms.push(newForm);
+                if (newForm) {
+                    $scope.message = "Add form successfully";
+                    $scope.currentForms.push(newForm);
+                } else {
+                    $scope.error = "Unable to add form";
+                }
             })
         }
 
         function updateForm() {
             if($scope.selectedForm) {
+                // same validation as register
+                $scope.error = null;
+                $scope.message = null;
+
                 $scope.newForm.title = $scope.form.title;
                 console.log("id= " + $scope.selectedForm._id)
                 FormService.updateFormById($scope.selectedForm._id, $scope.newForm, function (form) {
-                    currentForms();
+                    if (form) {
+                        $scope.message = "Form updated successfully";
+                        currentForms();
+                    } else {
+                        $scope.error = "Unable to update form";
+                    }
                 });
             }
         }
 
         function deleteForm(index) {
+            // same validation as register
+            $scope.error = null;
+            $scope.message = null;
+
             FormService.deleteFormById($scope.currentForms[index]._id, function(forms) {
-                currentForms();
+                if (forms) {
+                    $scope.message = "Deleted form successfully";
+                    currentForms();
+                } else {
+                    $scope.error = "Unable to delete form";
+                }
             })
         }
 
