@@ -27,7 +27,6 @@
 
         function access($rootScope) {
             if (!$rootScope.user) {
-                alert("Please register or log in.");
                 $location.url("/home");
             } else {
                 currentForms();

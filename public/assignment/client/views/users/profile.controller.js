@@ -15,6 +15,9 @@
         $scope.error = null;
         $scope.message = null;
 
+        if (!$scope.user) {
+            $location.url("/home");
+        }
 
         function update(profile) {
             // same validation as register
