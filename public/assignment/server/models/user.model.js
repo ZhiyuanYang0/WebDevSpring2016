@@ -65,7 +65,7 @@ module.exports = function(app) {
 
     function findUserByCredentials(credentials) {
         for(var u in users) {
-            if(users[u].username === credentials.username && users[u].password === credentials.password) {
+            if(users[u].username == credentials.username && users[u].password == credentials.password) {
                 return users[u];
             }
         }

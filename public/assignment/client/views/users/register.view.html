@@ -1,38 +1,41 @@
 <div ng-controller="RegisterController">
     <h1 style="text-align: center">Register</h1>
 
+    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div ng-show="error"  vclass="alert alert-danger"  role="alert">{{error}}</div>
+
     <form class="form-horizontal">
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Username: </label>
             <div class="col-sm-10">
-                <input ng-model="userRegister.username" type="text" class="form-control" id="inputName" placeholder="Username">
+                <input ng-model="user.username" type="text" class="form-control" id="inputName" placeholder="Username">
             </div>
         </div>
 
         <div class="form-group">
             <label for="inputPassword" class="col-sm-2 control-label">Password: </label>
             <div class="col-sm-10">
-                <input ng-model="userRegister.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <input ng-model="user.password" type="password" class="form-control" id="inputPassword" placeholder="Password">
             </div>
         </div>
 
         <div class="form-group">
             <label for="inputPassword2" class="col-sm-2 control-label">Verify Password: </label>
             <div class="col-sm-10">
-                <input ng-model="userRegister.password2" type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                <input ng-model="user.password2" type="password" class="form-control" id="inputPassword2" placeholder="Password">
             </div>
         </div>
 
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                <input ng-model="userRegister.email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+                <input ng-model="user.email" type="email" class="form-control" id="inputEmail" placeholder="Email">
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <a ng-click="register()" type="submit" class="btn btn-default btn-block btn-primary" role="button">Register</a>
+                <a ng-click="register(user)" type="submit" class="btn btn-default btn-block btn-primary" role="button">Register</a>
             </div>
         </div>
 

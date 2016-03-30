@@ -23,6 +23,7 @@
         return service;
 
         function findUserByCredentials(username, password) {
+            console.log("I am at findUserByCredentials.")
             return $http.get('/api/assignment/user?username='+ username + '&password='+ password);
         }
 
@@ -31,6 +32,7 @@
         }
 
         function createUser(user) {
+            console.log("I am at createUser.")
             return $http.post('/api/assignment/user/', user);
         }
 
@@ -38,8 +40,9 @@
             return $http.delete('/api/assignment/user/'+userId);
         }
 
-        function updateUser(currentUser) {
-            return $http.put('/api/assignment/user/' + currentUser._id, currentUser);
+        function updateUser(user) {
+            console.log("I am at update User client side.")
+            return $http.put('/api/assignment/user/' + $rootScope.currentUser._id, user);
         }
 
         function getCurrentUser()

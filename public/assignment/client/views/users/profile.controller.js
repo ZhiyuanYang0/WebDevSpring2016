@@ -4,52 +4,28 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController)
 
-    function ProfileController($scope, $location, $rootScope, UserService) {
-        $scope.user = $rootScope.user;
-        $scope.getUserName = getUserName;
-        $scope.getFirstName = getFirstName;
-        $scope.getLastName = getLastName;
-        $scope.getEmail = getEmail;
-        $scope.update = update;
-        $scope.profile = {};
-        $scope.error = null;
+    function ProfileController($scope, $location, UserService) {
+        $scope.currentUser = UserService.getCurrentUser();
+        $scope.updateUser = updateUser;
         $scope.message = null;
 
-        if (!$scope.user) {
+        if(!$scope.currentUser) {
             $location.url("/home");
         }
 
-        function update(profile) {
-            // same validation as register
-            $scope.error = null;
-            $scope.message = null;
+        function updateUser(user) {
 
-            UserService.updateUser($scope.user._id, profile, function(user) {
-                if (user) {
-                    $scope.message = "User updated successfully";
-                    $rootScope.user = user;
-                } else {
-                    $scope.message = "Unable to update the user";
-                }
-
-            })
+            UserService
+                .updateUser(user)
+                .then(function(response) {
+                   if(response.data) {
+                       UserService.setCurrentUser(response.data);
+                       $scope.currentUser = UserService.getCurrentUser();
+                       $scope.message = "Successfully update the profile";
+                       console.log($scope.currentUser);
+                       $location.url("/profile");
+                   }
+                });
         }
-
-        function getUserName() {
-            return $scope.user.username;
-        }
-
-        function getFirstName() {
-            return $scope.user.firstName;
-        }
-
-        function getLastName() {
-            return $scope.user.lastName;
-        }
-
-        function getEmail() {
-            return $scope.user.email;
-        }
-
     }
 })();

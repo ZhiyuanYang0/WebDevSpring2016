@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("HomeController", HomeController);
 
-    function HomeController($scope, $rootScope) {
-        $scope.user = $rootScope.user;
+    function HomeController($scope, UserService) {
+
     }
 })();
