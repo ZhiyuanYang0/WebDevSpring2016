@@ -23,7 +23,7 @@
         return service;
 
         function findUserByCredentials(username, password) {
-            console.log("I am at findUserByCredentials.")
+            //console.log("I am at findUserByCredentials.")
             return $http.get('/api/assignment/user?username='+ username + '&password='+ password);
         }
 

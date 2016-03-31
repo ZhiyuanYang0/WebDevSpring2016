@@ -7,10 +7,11 @@ module.exports = function(app) {
         createForm: createForm,
         findAllForms: findAllForms,
         findFormById: findFormById,
-        updateForm: updateFormById,
-        deleteForm: deleteFormById,
+        updateFormById: updateFormById,
+        deleteFormByFormId: deleteFormByFormId,
 
         //specific request
+        findFormByUserId: findFormByUserId,
         findFormByTitle: findFormByTitle,
 
         //helper functions
@@ -54,13 +55,24 @@ module.exports = function(app) {
         return null;
     }
 
-    function deleteFormById(id) {
+    function deleteFormByFormId(formId) {
         for (var i in forms) {
-            if (forms[i]._id == id) {
+            if (forms[i]._id == formId) {
                 forms.splice(i, 1);
             }
         }
         return forms;
+    }
+
+    function findFormByUserId(userId){
+        var userForms = [];
+        for (var i in forms) {
+            if(forms[i].userId == userId)
+            {
+                userForms.push(forms[i]);
+            }
+        }
+        return userForms;
     }
 
     function findFormByTitle(title) {

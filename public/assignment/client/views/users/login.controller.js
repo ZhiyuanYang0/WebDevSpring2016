@@ -13,11 +13,11 @@
                     .findUserByCredentials(user.username, user.password)
                     .then(function(response){
                        if(response.data) {
-                           console.log(response.data);
+                           //console.log(response.data);
                            UserService
                                .setCurrentUser(response.data);
-                           console.log("CurrentUser is");
-                           console.log(UserService.getCurrentUser());
+                           //console.log("CurrentUser is");
+                           //console.log(UserService.getCurrentUser());
                            $location.url("/profile");
                        }
                     });

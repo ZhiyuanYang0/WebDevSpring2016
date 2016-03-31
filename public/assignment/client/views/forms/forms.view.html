@@ -25,24 +25,24 @@
                 <td>
                     <div>
                         <div class="col-xs-3">
-                            <a ng-click="addForm()">
+                            <a ng-click="addForm(form)">
                                 <span class="glyphicon glyphicon-plus" style="font-size: 30px;"></span>
                             </a>
                         </div>
                         <div class="col-xs-3">
-                            <a ng-click="updateForm(index)">
+                            <a ng-click="updateForm()">
                                 <span class="glyphicon glyphicon-ok" style="font-size: 30px;"></span>
                             </a>
                         </div>
                     </div>
                 </td>
             </tr>
-            <tr ng-repeat="form in currentForms">
+            <tr ng-repeat="form in forms">
                 <td>{{form.title}}</td>
                 <td>
                     <div>
                         <div class="col-xs-3">
-                            <a ng-click="deleteForm($index)">
+                            <a ng-click="deleteForm(form)">
                                 <scan class="glyphicon glyphicon-remove" style="font-size: 30px;"></scan>
                             </a>
                         </div>
@@ -50,7 +50,7 @@
 
                     <div>
                         <div class="col-xs-3">
-                            <a ng-click="selectForm(index)">
+                            <a ng-click="selectForm($index)">
                                  <scan class="glyphicon glyphicon-pencil" style="font-size: 30px;"></scan>
                             </a>
                         </div>

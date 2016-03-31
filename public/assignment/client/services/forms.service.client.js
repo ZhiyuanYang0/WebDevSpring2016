@@ -21,6 +21,7 @@
 
         function findAllFormsForUser(userId)
         {
+            console.log("I am at forms client controller.")
             return $http.get('/api/assignment/user/'+userId+'/form');
         }
 
