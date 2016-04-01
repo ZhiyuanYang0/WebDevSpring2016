@@ -6,7 +6,7 @@ module.exports = function(app) {
         //general request
         createForm: createForm,
         findAllForms: findAllForms,
-        findFormById: findFormById,
+        findFormByFormId: findFormByFormId,
         updateFormById: updateFormById,
         deleteFormByFormId: deleteFormByFormId,
 
@@ -36,7 +36,7 @@ module.exports = function(app) {
         return forms;
     }
 
-    function findFormById(id) {
+    function findFormByFormId(id) {
         for (var i in forms) {
             if (forms[i]._id == id) {
                 return forms[i];

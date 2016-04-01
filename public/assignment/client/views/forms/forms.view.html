@@ -7,7 +7,7 @@
 
     <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{'active': $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
-        <li role="presentation" ng-class="{'active': $location.url() == '/fields'}"><a href="#/fields">Fields</a></li>
+        <li role="presentation"><a>Fields</a></li>
     </ul>
 
     <div class="table-responsive">
@@ -38,7 +38,7 @@
                 </td>
             </tr>
             <tr ng-repeat="form in forms">
-                <td>{{form.title}}</td>
+                <td><a href = "#/fields/{{form._id}}&{{form.title}}">{{form.title}}</a></td>
                 <td>
                     <div>
                         <div class="col-xs-3">

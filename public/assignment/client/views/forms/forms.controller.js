@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, $location, $rootScope, FormService, UserService) {
+    function FormController($http, $scope, $location, $rootScope, FormService, UserService) {
         var currentUser = UserService.getCurrentUser();
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;

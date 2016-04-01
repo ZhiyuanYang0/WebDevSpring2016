@@ -32,11 +32,11 @@
             })
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
-                controller: "FieldController"
+                controller: "FieldsController"
             })
-            .when("/user/:userId/form/:formId/fields", {
+            .when("/fields/:formId&:formTitle", {
                 templateUrl: "views/forms/fields.view.html",
-                controller: "FieldController"
+                controller: "FieldsController"
             })
             .otherwise({
                 redirectTo:"/home"

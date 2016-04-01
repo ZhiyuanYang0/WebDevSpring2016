@@ -1,39 +1,36 @@
-/**
- * Created by ceres on 2/17/16.
- */
-(function(){
+(function () {
     "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("FieldController", fieldController);
+        .controller("FieldsController", fieldsController);
 
-    function fieldController($scope, $routeParams, FieldService, FormService) {
+    function fieldsController($scope, $routeParams, FieldService, FormService) {
 
         //constant variables
         var formId = $routeParams.formId;
         var formTitle = $routeParams.formTitle;
-        console.log(formTitle);
         $scope.title = formTitle;
-        //find all the fields for form
-        console.log('I am in field controller');
+        $scope.getKey = getKey;
+
         function init(){
             FieldService
                 .getFieldsForForm(formId)
                 .then(function(response){
+                    console.log(response.data);
                     $scope.fields = response.data;
                 });
             FormService
                 .findAllFormsForUser($scope.currentUser._id)
                 .then(function(response){
                     for(var u in response.data){
-                        console.log(response.data[u]._id);
+                       // console.log(response.data[u]._id);
                     }
                     $scope.forms = response.data;
                 })
         }
         init();
 
-        var typeMap =[
+        var Map =[
             {key: "Single Line Text Field", value: "TEXT"},
             {key: "Multi Line Text Field", value: "TEXTAREA"},
             {key: "Date Field", value: "DATE"},
@@ -43,21 +40,71 @@
         ];
 
         function getFieldType(fieldType) {
+            console.log("I am at getFieldType.");
             if(fieldType == null){
-                return "DATE";
+                return "TEXT";
             }
-            for (var k in typeMap) {
-                console.log(typeMap[k].key + " " + typeMap[k].value);
-                if (typeMap[k].key == fieldType){
-                    return typeMap[k].value;
+            console.log(fieldType);
+            for (var k in Map) {
+                //console.log(Map[k].key + " " + Map[k].value);
+                if (Map[k].key == fieldType){
+                    console.log("The type is:");
+                    console.log(Map[k].value);
+                    return Map[k].value;
+                }
+            }
+        }
+
+        function getKey(value) {
+            if (value == "TEXT") {
+                return "Single Line Field";
+            } else if (value == "TEXTAREA") {
+                return "Multi Line Field";
+            }
+
+            for (var i in Map) {
+                if (Map[i].value == value) {
+                    return Map[i].key;
                 }
             }
         }
 
         $scope.addField = function(fieldType){
-            console.log('add field for form ' + formId);
+            console.log('I am at addField controller' + formId);
+            //initialize the new field
             var type = getFieldType(fieldType);
-            var field = {"label":"", "type": type, "placeholder": "","options" : null};
+            var label = null;
+            var options = null;
+            var field = null;
+            if (type == "TEXT" || type == "TEXTAREA") {
+                label = "New Text Field";
+                field = {"label": label, "type": type, "placeholder": "New Field"};
+            } else if (type == "DATE") {
+                label = "New Date Field";
+                field = {"label": label, "type": type};
+            } else if (type == "OPTIONS") {
+                label = "New Dropdown";
+                options = [
+                    {"label": "Option 1", "value": "OPTION_1"},
+                    {"label": "Option 2", "value": "OPTION_2"},
+                    {"label": "Option 3", "value": "OPTION_3"}
+                ];
+                field = {"label": label, "type": type, "options": options};
+            } else if (type == "CHECKBOXES") {
+                label = "New Checkboxes";
+                options = [ {"label": "Option A", "value": "OPTION_A"},
+                    {"label": "Option B", "value": "OPTION_B"},
+                    {"label": "Option C", "value": "OPTION_C"}
+                ];
+                field = {"label": label, "type": type, "options": options};
+            } else if (type == "RADIOS") {
+                label = "New Radio Buttons";
+                options = [ {"label": "Option X", "value": "OPTION_X"},
+                    {"label": "Option Y", "value": "OPTION_Y"},
+                    {"label": "Option Z", "value": "OPTION_Z"}
+                ];
+                field = {"label": label, "type": type, "options": options};
+            }
             FieldService
                 .createFieldForForm(formId, field)
                 .then(init);
@@ -82,10 +129,10 @@
 
         $scope.commitEdit = function (field){
 
-            var isOption = !(field.type == 'TEXT' || field.type == 'TEXTAREA');
+            var hasOption = !(field.type == 'TEXT' || field.type == 'TEXTAREA');
 
             var optionArray = [];
-            if (isOption) {
+            if (hasOption) {
                 console.log(field.optionText);
                 var text = field.optionText;
                 for (var o in text) {
@@ -104,24 +151,10 @@
                 .then(init);
         }
 
-        $scope.cloneField = function(field){
-            console.log('clone field ' + field.label);
-            field._id =
-                FieldService
-                    .createFieldForForm(formId, field)
-                    .then(init);
-        }
         $scope.deleteField = function(field){
             console.log('delete field ' + field._id + ' of form ' + formId);
             FieldService
                 .deleteFieldForForm(formId, field._id)
-                .then(init);
-        }
-
-        $scope.orderField = function(){
-            var form = $scope.form.fields;
-            FormService
-                .updateFormById(formId, form)
                 .then(init);
         }
 
