@@ -69,6 +69,7 @@ module.exports = function(db, mongoose) {
 
     function updateField(formId, fieldId, field){
         var deferred = q.defer();
+
         var ObjectId = mongoose.Types.ObjectId;
         formModel.update(
             {_id: formId, 'fields._id': new ObjectId(fieldId)},
