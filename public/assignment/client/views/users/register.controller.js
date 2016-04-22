@@ -11,7 +11,12 @@
         function register(user) {
             $scope.message = null;
             if (user != null && user.username != null && user.password != null
-                  && user.password2 != null && user.password2 == user.password && user.email != null) {
+                  && user.password2 != null && user.password2 == user.password
+                  && user.email != null) {
+                var emails = [];
+                emails.push(user.email);
+                user.emails = emails;
+
                 UserService
                     .createUser(user)
                     .then(function(response) {

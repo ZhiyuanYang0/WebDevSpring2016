@@ -46,7 +46,6 @@
             }
             console.log(fieldType);
             for (var k in Map) {
-                //console.log(Map[k].key + " " + Map[k].value);
                 if (Map[k].key == fieldType){
                     console.log("The type is:");
                     console.log(Map[k].value);

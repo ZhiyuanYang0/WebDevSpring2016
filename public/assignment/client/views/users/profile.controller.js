@@ -9,17 +9,13 @@
         $scope.updateUser = updateUser;
         $scope.message = null;
 
-        if(!$scope.currentUser) {
-            $location.url("/home");
-        }
-
         function updateUser(user) {
 
             UserService
                 .updateUser(user)
                 .then(function(response) {
                    if(response.data) {
-                       UserService.setCurrentUser(response.data);
+                       UserService.setCurrentUser(response.data[0]);
                        $scope.currentUser = UserService.getCurrentUser();
                        $scope.message = "Successfully update the profile";
                        console.log($scope.currentUser);

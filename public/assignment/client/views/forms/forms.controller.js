@@ -22,13 +22,14 @@
             FormService
                 .findAllFormsForUser(userId)
                 .then(function(response) {
-                    //console.log("response.data=");
-                    //console.log(response.data);
+                    console.log("response.data=");
+                    console.log(response.data);
                     $scope.forms = response.data;
                 });
         }
 
         function addForm(form) {
+            console.log("I am in addForm controller.")
             if (form) {
                 form.fields = [];
                 FormService
@@ -36,7 +37,7 @@
                     .then(function (response) {
                         console.log("response :");
                         console.log(response.data);
-                        $scope.forms.push(response.data);
+                        $scope.forms = response.data;
                     });
             }
         }
