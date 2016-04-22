@@ -20,8 +20,12 @@
                 UserService
                     .createUser(user)
                     .then(function(response) {
-                       UserService.setCurrentUser(response.data);
-                        $location.url("/profile");
+                        if (response.data) {
+                            UserService.setCurrentUser(response.data);
+                            $location.url("/profile");
+                        } else {
+                            $scope.error = "The user already exist. Please log in.";
+                        }
                     });
             } else {
                 $scope.error = "Please fill all the fileds and provides a match password."

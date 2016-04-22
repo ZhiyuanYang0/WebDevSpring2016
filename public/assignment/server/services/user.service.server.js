@@ -10,9 +10,17 @@ module.exports = function(app, userModel) {
     function createUser(req, res) {
         //console.log("I am at createUser server side.")
         var newUser = req.body;
+
+        userModel.findUserByUsername(newUser.username)
+            .then(function(user) {
+               if (user) {
+                   res.json(null);
+                   return;
+               }
+            });
+
         userModel.createUser(newUser)
-            .then(
-                function(user) {
+            .then(function(user) {
                     res.json(user);
                     req.login(user, function (err, doc) {
                         //console.log(doc)
