@@ -62,6 +62,9 @@ module.exports = function(db, mongoose) {
         //return userModel.update({_id: userId}, {$set: newUser});
         console.log("I am in the updateUser service");
         console.log(newUser);
+
+        delete newUser._id;
+
         var deferred = q.defer();
         userModel.update({_id: userId}, {$set: newUser}, function(err, user) {
             if(err){
