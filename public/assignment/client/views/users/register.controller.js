@@ -6,7 +6,7 @@
 
     function RegisterController($scope, $location, $rootScope, UserService) {
         $scope.register = register;
-        $scope.message = null;
+        $scope.error = null;
 
         function register(user) {
             $scope.message = null;
@@ -24,7 +24,7 @@
                         $location.url("/profile");
                     });
             } else {
-                $scope.message = "Please fill all the fileds and provides a match password."
+                $scope.error = "Please fill all the fileds and provides a match password."
             }
         }
     }

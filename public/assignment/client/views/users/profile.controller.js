@@ -9,6 +9,14 @@
         $scope.updateUser = updateUser;
         $scope.message = null;
 
+        function init() {
+            if (!$scope.currentUser) {
+                $location.url("/home");
+            }
+        }
+
+        init();
+
         function updateUser(user) {
 
             UserService

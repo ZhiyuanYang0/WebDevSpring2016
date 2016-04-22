@@ -4,7 +4,9 @@
         .module("FormBuilderApp")
         .controller("FieldsController", fieldsController);
 
-    function fieldsController($scope, $routeParams, FieldService, FormService) {
+    function fieldsController($scope, $location, $routeParams, FieldService, FormService, UserService) {
+
+        $scope.currentUser = UserService.getCurrentUser();
 
         //constant variables
         var formId = $routeParams.formId;
@@ -13,17 +15,20 @@
         $scope.getKey = getKey;
 
         function init(){
+            if (!$scope.currentUser) {
+                $location.url("/home");
+                return;
+            }
+
             FieldService
                 .getFieldsForForm(formId)
                 .then(function(response){
-                    console.log(response.data);
                     $scope.fields = response.data;
                 });
             FormService
                 .findAllFormsForUser($scope.currentUser._id)
                 .then(function(response){
                     for(var u in response.data){
-                       // console.log(response.data[u]._id);
                     }
                     $scope.forms = response.data;
                 })
@@ -40,15 +45,11 @@
         ];
 
         function getFieldType(fieldType) {
-            console.log("I am at getFieldType.");
             if(fieldType == null){
                 return "TEXT";
             }
-            console.log(fieldType);
             for (var k in Map) {
                 if (Map[k].key == fieldType){
-                    console.log("The type is:");
-                    console.log(Map[k].value);
                     return Map[k].value;
                 }
             }
@@ -69,7 +70,6 @@
         }
 
         $scope.addField = function(fieldType){
-            console.log('I am at addField controller' + formId);
             //initialize the new field
             var type = getFieldType(fieldType);
             var label = null;
@@ -110,7 +110,6 @@
         }
 
         $scope.editField=function(field){
-            console.log(field.type + ' '+field.label);
             $scope.efield = field;
             var isOption = !(field.type === 'TEXT' || field.type === 'TEXTAREA' || field.type == 'DATE');
 
@@ -120,38 +119,41 @@
                 for (var o in ol) {
                     optionList.push(ol[o].label + ":" + ol[o].value)
                 }
-                console.log(optionList);
                 $scope.efield.optionText = optionList.join("\n");
-                console.log(field.optionText);
             }
         }
 
         $scope.commitEdit = function (field){
 
-            var hasOption = !(field.type == 'TEXT' || field.type == 'TEXTAREA');
+            var isOption = !(field.type == 'TEXT' || field.type == 'TEXTAREA' || field.type == 'DATE');
 
             var optionArray = [];
-            if (hasOption) {
-                console.log(field.optionText);
-                var text = field.optionText;
-                for (var o in text) {
-                    console.log(o);
-                    var a = text[o].split(":");
-                    optionArray.push({
-                        label: a[0],
-                        value: a[1]
-                    });
+            if (isOption) {
+                var text = field.optionText + '';
+                //console.log("Text is:");
+                //console.log(text);
+                if(text != null){
+                    var textArray = text.split("\n");
+                    for(var a in textArray){
+                        var option = textArray[a].split(":");
+                        //console.log("options is");
+                        //console.log(option);
+                        optionArray.push({
+                            label: option[0],
+                            value: option[1]
+                        });
+                    }
                 }
                 field.options = optionArray;
             }
-            console.log(field._id);
+
             FieldService
                 .updateField(formId, field._id, field)
                 .then(init);
         }
 
+
         $scope.deleteField = function(field){
-            console.log('delete field ' + field._id + ' of form ' + formId);
             FieldService
                 .deleteFieldForForm(formId, field._id)
                 .then(init);

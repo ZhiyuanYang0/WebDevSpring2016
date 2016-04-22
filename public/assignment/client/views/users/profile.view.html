@@ -2,6 +2,9 @@
 
     <h1 style="text-align: center">Profile</h1>
 
+    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div ng-show="error"  vclass="alert alert-danger"  role="alert">{{error}}</div>
+
     <form class="form-horizontal">
         <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Username: </label>

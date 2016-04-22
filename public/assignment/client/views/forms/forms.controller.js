@@ -13,6 +13,14 @@
         $scope.message = null;
         $scope.forms = [];
 
+        function init() {
+            if (!currentUser) {
+                $location.url("/home");
+            }
+        }
+
+        init();
+
         $scope.getForms = getForms;
         if (currentUser != null) {
             getForms(currentUser._id);
@@ -22,21 +30,16 @@
             FormService
                 .findAllFormsForUser(userId)
                 .then(function(response) {
-                    console.log("response.data=");
-                    console.log(response.data);
                     $scope.forms = response.data;
                 });
         }
 
         function addForm(form) {
-            console.log("I am in addForm controller.")
             if (form) {
                 form.fields = [];
                 FormService
                     .createFormForUser(currentUser._id, form)
                     .then(function (response) {
-                        console.log("response :");
-                        console.log(response.data);
                         $scope.forms = response.data;
                     });
             }
@@ -53,7 +56,6 @@
         };
 
         function selectForm(index) {
-            console.log("index=" + index);
             document.getElementById('formTitle').value = $scope.forms[index].title;
             $scope.currentForm = $scope.forms[index];
             $scope.isSelected = true;
