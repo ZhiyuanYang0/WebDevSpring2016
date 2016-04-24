@@ -2,74 +2,74 @@
 
     <h1 style="text-align: center">Admin</h1>
 
-    <h3>Users</h3>
+    <h2 style="text-align: center">User List</h2>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
+    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div ng-show="error"  class="alert alert-danger"  role="alert">{{error}}</div>
+
+    <div class="tab-content table-responsive">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span>Username</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span>Password</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span>Role</th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
+                <th>
+                    <a href="#/admin" ng-click="sortType = 'user.username'; sortReverse = !sortReverse">Username
+                        <span ng-show="sortType == 'user.username' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span ng-show="sortType == 'user.username' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><div class="glyphicon col-xs-2"></div>Password</th>
+                <th>
+                    <a href="#/admin" ng-click="sortType = 'user.firstName'; sortReverse = !sortReverse">First Name
+                        <span ng-show="sortType == 'user.firstName' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span ng-show="sortType == 'user.firstName' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="#/admin" ng-click="sortType = 'user.lastName'; sortReverse = !sortReverse">Last Name
+                        <span ng-show="sortType == 'user.lastName' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                        <span ng-show="sortType == 'user.lastName' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><div class="glyphicon col-xs-2"></div>Role</th>
+                <th><div class="glyphicon col-xs-2"></div>Action</th>
             </tr>
             </thead>
 
             <tbody>
             <tr>
-                <td><input type="text" class="form-control" placeholder="username"></td>
-                <td><input type="password" class="form-control" placeholder="password"></td>
-                <td><input type="text" class="form-control" placeholder="role1, role2"></td>
+                <td><input ng-model="user.username" type="text" class="form-control" placeholder="Username"></td>
+                <td><input ng-model="user.password" type="password" class="form-control" placeholder="Password"></td>
+                <td><input ng-model="user.firstName" type="text" class="form-control" placeholder="First Name"></td>
+                <td><input ng-model="user.lastName" type="text" class="form-control" placeholder="Last Name"></td>
+                <td><input ng-model="user.roles" type="text" class="form-control" placeholder="role1, role2"></td>
                 <td>
                     <div>
-
-                        <div class="col-sm-6">
-                            <a href="../users/register.view.html">
-                            <span style="font-size: 30px;" class="glyphicon glyphicon-plus"></span>
-                            </a>
+                        <div class="col-xs-6">
+                            <button ng-click="add(user)" class="glyphicon glyphicon-plus btn btn-primary"></button>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="admin.view.html">
-                            <span style="font-size: 30px;" class="glyphicon glyphicon-ok"></span>
-                            </a>
+                        <div class="col-xs-6">
+                            <button ng-click="update(user)"class="glyphicon glyphicon-ok btn btn-success"></button>
                         </div>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>alice</td>
-                <td></td>
-                <td>student</td>
+            <tr ng-repeat="user in users | orderBy:sortType:sortReverse">
+                <td>{{user.username}}</td>
+                <td>&nbsp;</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.roles}}</td>
                 <td>
                     <div>
-                        <a href="admin.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                        <a href="../users/profile.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
+                        <div class="col-xs-6">
+                            <button class="glyphicon glyphicon-remove btn btn-danger" ng-click="remove(user)"></button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="glyphicon glyphicon-cog btn btn-info" ng-click="select(user)"></button>
+                        </div>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>bob</td>
-                <td></td>
-                <td>faculty | admin</td>
-                <td>
-                    <div>
-                        <a href="admin.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                        <a href="../users/profile.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>charlie</td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div>
-                        <a href="admin.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-remove"></div></a>
-                        <a href="../users/profile.view.html"><div style="font-size: 30px;" class="col-xs-6 glyphicon glyphicon-pencil"></div></a>
-                    </div>
-                </td>
-            </tr>
-
             </tbody>
         </table>
     </div>

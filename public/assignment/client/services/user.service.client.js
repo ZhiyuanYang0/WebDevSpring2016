@@ -10,7 +10,7 @@
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
-            deleteUserById: deleteUserById,
+            deleteUser: deleteUser,
             updateUser: updateUser,
 
             //$http get set
@@ -18,9 +18,33 @@
             getCurrentUser: getCurrentUser,
 
             //new services
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+
+            //new features by PassportJS
+            login : login,
+            logout : logout,
+            register : register
+
         };
         return service;
+
+        // Passport Related functions
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function createUser(user) {
+            return $http.post('/api/user', user);
+        }
+
 
         function findUserByCredentials(username, password) {
             //console.log("I am at findUserByCredentials.")
@@ -28,21 +52,16 @@
         }
 
         function findAllUsers() {
-            return $http.get('/api/assignment/user/findAllUsers');
+            //console.log("I am at find all users client side.");
+            return $http.get("/api/user");
         }
 
-        function createUser(user) {
-            console.log("I am at createUser.")
-            return $http.post('/api/assignment/user/', user);
+        function deleteUser(userId) {
+            return $http.delete('/api/user/'+userId);
         }
 
-        function deleteUserById(userId) {
-            return $http.delete('/api/assignment/user/'+userId);
-        }
-
-        function updateUser(user) {
-            console.log("I am at update User client side.")
-            return $http.put('/api/assignment/user/' + $rootScope.currentUser._id, user);
+        function updateUser(userId, user) {
+            return $http.put('/api/user/'+userId, user);
         }
 
         function getCurrentUser()
