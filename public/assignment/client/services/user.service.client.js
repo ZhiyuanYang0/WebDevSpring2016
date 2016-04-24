@@ -12,6 +12,7 @@
             createUser: createUser,
             deleteUser: deleteUser,
             updateUser: updateUser,
+            updateUserProfile : updateUserProfile,
 
             //$http get set
             setCurrentUser : setCurrentUser,
@@ -61,7 +62,13 @@
         }
 
         function updateUser(userId, user) {
+            console.log("userId");
             return $http.put('/api/user/'+userId, user);
+        }
+
+        function updateUserProfile(user) {
+            console.log("I am at update User client side.")
+            return $http.put('/api/assignment/user/' + $rootScope.currentUser._id, user);
         }
 
         function getCurrentUser()

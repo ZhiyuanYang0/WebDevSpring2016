@@ -11,6 +11,7 @@ module.exports = function(db, mongoose) {
         findAllUsers: findAllUsers,
         findUserById: findUserById,
         updateUser: updateUser,
+        updateUserById : updateUserById,
         removeUser: removeUser,
 
         //user model request
@@ -18,6 +19,33 @@ module.exports = function(db, mongoose) {
         findUserByCredentials: findUserByCredentials
     };
     return api;
+
+
+    function updateUserById(userId, newUser) {
+        //return userModel.update({_id: userId}, {$set: newUser});
+        console.log("I am in the updateUser service");
+        console.log(newUser);
+
+        delete newUser._id;
+
+        var deferred = q.defer();
+        userModel.update({_id: userId}, {$set: newUser}, function(err, user) {
+            if(err){
+                deferred.reject(err);
+            }else{
+                userModel.find({_id: userId},function(err, user){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(user);
+                    }
+                });
+            }
+        });
+
+        return deferred.promise;
+    }
 
     function createUser(user) {
         return userModel.create(user);

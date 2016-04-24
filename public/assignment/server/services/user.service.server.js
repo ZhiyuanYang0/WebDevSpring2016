@@ -19,7 +19,7 @@ module.exports = function(app, userModel) {
     app.post('/api/assignment/user', createUser);
     app.get('/api/assignment/user', login);
     app.get('/api/assignment/user/:id', findUserById);
-    //app.put('/api/assignment/user/:id', updateUserById);
+    app.put('/api/assignment/user/:id', updateUserById);
     //app.delete('api/assignment/user/:id', deleteUserById);
 
     passport.use(new LocalStrategy(localStrategy));
@@ -99,6 +99,21 @@ module.exports = function(app, userModel) {
                     }
                 },
                 function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function updateUserById(req, res) {
+        var id = req.params.id;
+        var user = req.body;
+        userModel
+            .updateUserById(id, user)
+            .then(
+                function(updatedUser){
+                    res.json(updatedUser);
+                },
+                function (err) {
                     res.status(400).send(err);
                 }
             );

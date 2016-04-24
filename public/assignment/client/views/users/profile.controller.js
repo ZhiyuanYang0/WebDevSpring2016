@@ -20,7 +20,7 @@
         function updateUser(user) {
 
             UserService
-                .updateUser(user)
+                .updateUserProfile(user)
                 .then(function(response) {
                    if(response.data) {
                        UserService.setCurrentUser(response.data[0]);
