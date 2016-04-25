@@ -43,6 +43,7 @@ app.use(passport.session());
 app.use(express.static(__dirname+'/public'));
 
 require("./public/assignment/server/app.js")(app, mongoose, db);
+require("./public/blog/server/app.js")(app);
 
 app.listen(port, ipaddress);
 
