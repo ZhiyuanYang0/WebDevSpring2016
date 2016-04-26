@@ -1,19 +1,29 @@
-module.exports = function(app, model) {
-    app.post("/api/project/login", findUserByCredentials);
-    app.get("/api/project/loggedin", loggedin);
-    app.post("/api/project/logout", logout);
-    app.post("/api/project/register", register);
+module.exports = function(app, movieModel, userModel) {
+    app.post("/api/project/blog/login", login);
+    app.get("/api/project/blog/loggedin", loggedin);
+    app.post("/api/project/blog/logout", logout);
+    app.post("/api/project/blog/register", register);
+    app.get("/api/project/blog/profile/:userId", profile);
+
+    function profile(req, res) {
+        var userId = req.params.userId;
+        var user = userModel.findUserById(userId);
+        var movieImdbIDs = user.likes;
+        var movies = movieModel.findMoviesByImdbIDs(movieImdbIDs);
+        user.likesMovies = movies;
+        res.json(user);
+    }
 
     function register(req, res) {
         var user = req.body;
-        user = model.createUser(user);
+        user = userModel.createUser(user);
         req.session.currentUser = user;
         res.json(user);
     }
 
-    function findUserByCredentials(req, res) {
+    function login(req, res) {
         var credentials = req.body;
-        var user = model.findUserByCredentials(credentials);
+        var user = userModel.findUserByCredentials(credentials);
         req.session.currentUser = user;
         res.json(user);
     }

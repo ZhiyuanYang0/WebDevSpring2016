@@ -37,6 +37,14 @@
                     getLoggedIn: getLoggedIn
                 }
             })
+            .when("/details/:imdbID", {
+                templateUrl: "views/details/details.view.html",
+                controller: "DetailsController",
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
+            })
             .when("/about", {
                 templateUrl: "views/footer/about.view.html"
             })

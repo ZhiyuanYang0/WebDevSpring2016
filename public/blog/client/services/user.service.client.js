@@ -9,20 +9,25 @@
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
             createUser: createUser,
-            logout: logout
+            logout: logout,
+            getProfile: getProfile
         };
         return api;
 
+        function getProfile() {
+            return $http.get("/api/project/blog/profile/"+$rootScope.currentUser._id);
+        }
+
         function createUser(user) {
-            return $http.post("/api/project/register", user);
+            return $http.post("/api/project/blog/register", user);
         }
 
         function logout() {
-            return $http.post("/api/project/logout");
+            return $http.post("/api/project/blog/logout");
         }
 
         function getCurrentUser() {
-            return $http.get("/api/project/loggedin");
+            return $http.get("/api/project/blog/loggedin");
         }
 
         function setCurrentUser(user) {
@@ -30,7 +35,7 @@
         }
 
         function findUserByCredentials(credentials) {
-            return $http.post("/api/project/login", credentials);
+            return $http.post("/api/project/blog/login", credentials);
         }
     }
 })();

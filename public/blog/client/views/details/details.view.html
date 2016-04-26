@@ -1,0 +1,26 @@
+<h2>Details</h2>
+
+<h3>{{model.data.Title}}</h3>
+
+<img ng-src="{{model.data.Poster}}"
+     height="200px"/>
+
+<br/>
+<br/>
+
+<button class="btn btn-primary"
+        ng-click="model.favorite(model.data)">
+    <span class="glyphicon glyphicon-star-empty"></span>
+</button>
+
+<h4>Plot</h4>
+<p>
+    {{model.data.Plot}}
+</p>
+
+<h4>Actors</h4>
+<ul>
+    <li ng-repeat="actor in model.data.Actors.split(',')">
+        {{actor}}
+    </li>
+</ul>

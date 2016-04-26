@@ -3,7 +3,7 @@
         .module("BlogApp")
         .controller("SearchController", searchController);
 
-    function searchController() {
+    function searchController(OmdbService) {
         var vm = this;
 
         vm.search = search;
@@ -14,7 +14,11 @@
         init();
 
         function search(movie) {
-            console.log(movie);
+            OmdbService
+                .searchMovieByTitle(movie.title)
+                .then(function(response){
+                    vm.data = response.data;
+                });
         }
     }
 })();
