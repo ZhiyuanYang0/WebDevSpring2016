@@ -14,8 +14,14 @@
         init();
 
         function register(user) {
+
+            if (!user) {
+
+            }
+
+
             UserService
-                .createUser(user)
+                .register(user)
                 .then(function(response){
                     var currentUser = response.data;
                     if(currentUser != null) {

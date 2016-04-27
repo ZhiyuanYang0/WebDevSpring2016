@@ -16,9 +16,15 @@
 
         function init() {
             OmdbService
-                .findMovieByImdbID(imdbID)
+                .findMovieByImdbID (imdbID)
                 .then(function(response){
                     vm.data = response.data;
+                });
+
+            MovieService
+                .findUserLikes (imdbID)
+                .then(function(response){
+                    vm.movie = response.data;
                 });
         }
         init();
@@ -26,11 +32,10 @@
         function favorite(movie) {
             if(currentUser) {
                 MovieService
-                    .setUserLikesMovie(currentUser._id, movie);
+                    .userLikesMovie(currentUser._id, movie);
             } else {
                 $location.url("/login");
             }
         }
-
     }
 })();
