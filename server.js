@@ -42,7 +42,7 @@ app.use(passport.session());
 
 app.use(express.static(__dirname+'/public'));
 
-require("./public/assignment/server/app.js")(app, mongoose, db);
+//require("./public/assignment/server/app.js")(app, mongoose, db);
 // pass db and mongoose reference to server side application module
 require("./public/blog/server/app.js")(app, db, mongoose);
 

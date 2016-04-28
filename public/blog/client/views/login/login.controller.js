@@ -17,6 +17,7 @@
             if(!user) {
                 return;
             }
+
             UserService
                 .login({
                     username: user.username,
@@ -26,6 +27,8 @@
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
+                    } else {
+                        vm.error = "There is no such username and password pair.";
                     }
                 });
         }

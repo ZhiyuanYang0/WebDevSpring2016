@@ -9,6 +9,10 @@
             ng-hide="currentUser">
             <a href="#/login">Login</a>
         </li>
+        <li ng-class="{'active': model.$location.url() == '/admin'}"
+            ng-show="currentUser">
+            <a href="#/admin">Admin</a>
+        </li>
         <li ng-show="currentUser">
             <a ng-click="model.logout()">Logout</a>
         </li>

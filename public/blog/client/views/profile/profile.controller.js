@@ -10,6 +10,8 @@
         console.log(username);
 
         function init() {
+
+
             UserService
                 .getProfile()
                 .then(function (response) {

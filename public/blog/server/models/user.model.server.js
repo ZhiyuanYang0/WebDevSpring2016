@@ -1,5 +1,3 @@
-var mock = require("./user.mock.json");
-
 // load q promise library
 var q = require("q");
 
@@ -17,9 +15,62 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         findUserById: findUserById,
         findUsersByIds: findUsersByIds,
-        userLikesMovie: userLikesMovie
+        userLikesMovie: userLikesMovie,
+
+        //admin function
+        findAllUsers: findAllUsers,
+        updateUser: updateUser,
+        removeUser: removeUser,
+        findUserByUsername: findUserByUsername,
+
+        //user update it's profile
+        updateUserById : updateUserById
     };
     return api;
+
+    function findUserByUsername(username) {
+        return UserModel.findOne({username: username});
+    }
+
+
+    function findAllUsers() {
+        return UserModel.find();
+    }
+
+    function updateUser(userId, user) {
+        delete user._id;
+        return UserModel.update({_id: userId}, {$set: user});
+    }
+
+    function removeUser(userId) {
+        return UserModel.remove({_id: userId});
+    }
+
+    function updateUserById(userId, newUser) {
+        //return userModel.update({_id: userId}, {$set: newUser});
+        console.log("I am in the updateUser service");
+        console.log(newUser);
+
+        delete newUser._id;
+
+        var deferred = q.defer();
+        UserModel.update({_id: userId}, {$set: newUser}, function(err, user) {
+            if(err){
+                deferred.reject(err);
+            }else{
+                UserModel.find({_id: userId},function(err, user){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(user);
+                    }
+                });
+            }
+        });
+
+        return deferred.promise;
+    }
 
     // add movie to user likes
     function userLikesMovie (userId, movie) {
@@ -85,25 +136,7 @@ module.exports = function(db, mongoose) {
     }
 
     function createUser(user) {
-
-        // use q to defer the response
-        var deferred = q.defer();
-
-        // insert new user with mongoose user model's create()
-        UserModel.create(user, function (err, doc) {
-
-            if (err) {
-                // reject promise if error
-                deferred.reject(err);
-            } else {
-                // resolve promise
-                deferred.resolve(doc);
-            }
-
-        });
-
-        // return a promise
-        return deferred.promise;
+        return UserModel.create(user);
     }
 
     function findUserByCredentials(credentials) {
