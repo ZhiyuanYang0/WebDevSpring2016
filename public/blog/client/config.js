@@ -58,6 +58,30 @@
                     loggedin: checkCurrentUser
                 }
             })
+            .when("/article", {
+                templateUrl: "views/article/list.view.html",
+                controller: "ListController"
+            })
+            .when("/createArticle", {
+                templateUrl: "views/article/create.view.html",
+                controller: "CreateController"
+            })
+            .when("/article/:articleId", {
+                templateUrl: "views/article/article.view.html",
+                controller: "ArticleController"
+            })
+            .when("/article/:articleId/edit", {
+                templateUrl: "views/article/edit.view.html",
+                controller: "EditController"
+            })
+            .when("/category", {
+                templateUrl: "views/category/category.view.html",
+                controller: "CategoryController"
+            })
+            .when("/createCategory", {
+                templateUrl: "views/category/edit.view.html",
+                controller: "EditCategoryController"
+            })
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",

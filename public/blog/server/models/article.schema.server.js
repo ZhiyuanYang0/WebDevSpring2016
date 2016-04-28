@@ -1,7 +1,15 @@
-URL of Google Docs:
-    https://docs.google.com/document/d/1cN87Q4tRj0P331iLtma5omJmJ9Q5qhVg-2KNjA7HeuA/edit
+module.exports = function(mongoose) {
 
-        1. GitHub Repository: https://github.com/ZhiyuanYang0/WebDevSpring2016
-
-    2. OpenShift Web Application: http://cs5610spring2016-zhiyuanyang.rhcloud.com
-
+    var ArticleSchema = new mongoose.Schema({
+        author: String,
+        createTime: {type: Date, default: Date.now},
+        updateTime: {type: Date, default: Date.now},
+        title: String,
+        body: String,
+        comments: [mongoose.Schema.Types.ObjectId],
+        categories: [String],
+        movieId: String,
+        bookId: String
+    }, {collection: 'blog.article'});
+    return ArticleSchema;
+};

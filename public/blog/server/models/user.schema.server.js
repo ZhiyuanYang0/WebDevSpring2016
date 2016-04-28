@@ -9,6 +9,7 @@ module.exports = function(mongoose) {
         firstName: String,
         lastName: String,
         email: String,
+        topics: [String],
         roles: [String],
         // imdb ids of movies this user likes
         likes: [String],

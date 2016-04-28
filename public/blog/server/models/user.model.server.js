@@ -48,8 +48,7 @@ module.exports = function(db, mongoose) {
 
     function updateUserById(userId, newUser) {
         //return userModel.update({_id: userId}, {$set: newUser});
-        console.log("I am in the updateUser service");
-        console.log(newUser);
+
 
         delete newUser._id;
 
