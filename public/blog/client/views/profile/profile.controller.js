@@ -11,7 +11,6 @@
 
         function init() {
 
-
             UserService
                 .getProfile()
                 .then(function (response) {
