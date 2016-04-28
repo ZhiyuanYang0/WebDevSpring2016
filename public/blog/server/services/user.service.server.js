@@ -11,6 +11,7 @@ module.exports = function(app, movieModel, userModel) {
     app.post  ('/api/register',       register);
     app.get   ('/api/loggedin',       loggedin);
     app.get("/api/project/blog/profile/:userId", profile);
+    app.get('/api/user/:userId', userProfile);
 
     app.put('/api/assignment/user/:id', updateUserById);
 
@@ -54,6 +55,49 @@ module.exports = function(app, movieModel, userModel) {
                 }
             );
     }
+
+    function userProfile(req, res) {
+        console.log("I am at user profile server side.");
+        var userId = req.params.userId;
+        var user = null;
+
+        // use model to find user by id
+        userModel.findUserById(userId)
+            .then(
+
+                // first retrieve the user by user id
+                function (doc) {
+
+                    user = doc;
+
+                    // fetch movies this user likes
+                    return movieModel.findMoviesByImdbIDs(doc.likes);
+                },
+
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                // fetch movies this user likes
+                function (movies) {
+
+                    // list of movies this user likes
+                    // movies are not stored in database
+                    // only added for UI rendering
+                    user.likesMovies = movies;
+                    res.json(user);
+                },
+
+                // send error if promise rejected
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+    }
+
+
 
     function findAllUsers(req, res) {
         if(isAdmin(req.user)) {
@@ -161,9 +205,6 @@ module.exports = function(app, movieModel, userModel) {
                 }
             );
     }
-
-
-
 
     function profile(req, res) {
         var userId = req.params.userId;

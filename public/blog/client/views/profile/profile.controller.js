@@ -6,17 +6,23 @@
     function profileController(UserService, $location, $routeParams) {
         var vm = this;
 
-        var username = $routeParams.username;
-        console.log(username);
+        var userId = $routeParams.userId;
 
         function init() {
 
             UserService
-                .getProfile()
-                .then(function (response) {
+                .getDetails(userId)
+                .then(function(response) {
                     vm.profile = response.data;
                     console.log(vm.profile);
-                });
+                })
+
+            //UserService
+            //    .getProfile()
+            //    .then(function (response) {
+            //        vm.profile = response.data;
+            //        console.log(vm.profile);
+            //    });
         }
         return init();
     }

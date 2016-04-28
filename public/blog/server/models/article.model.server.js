@@ -5,6 +5,7 @@ module.exports = function(db, mongoose) {
 
     var api = {
         createArticle: createArticle,
+        deleteArticleById: deleteArticleById,
         findAllArticles: findAllArticles,
         findArticleById: findArticleById
     }
@@ -12,6 +13,10 @@ module.exports = function(db, mongoose) {
 
     function createArticle(article) {
         return ArticleModel.create(article);
+    }
+
+    function deleteArticleById(articleId) {
+        return ArticleModel.remove({_id: articleId});
     }
 
     function findAllArticles() {

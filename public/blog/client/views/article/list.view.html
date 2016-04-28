@@ -1,5 +1,24 @@
 <h1 align="center">Listing all articles</h1>
 
+<nav>
+    <div align="center" style="margin-bottom: 10px">
+    <ul class="pagination">
+        <li>
+            <a ng-click="prev()" aria-label="Previous">
+                <span aria-hidden="true">&#8592; Previous</span>
+            </a>
+        </li>
+        <li ng-repeat="page in pages"><a href="#list/{{page}}">{{page}}</a></li>
+        <li>
+            <a ng-click="next()" aria-label="Next">
+                <span aria-hidden="true">Next &#8594;</span>
+            </a>
+        </li>
+    </ul>
+    </div>
+</nav>
+
+<!--<div ng-repeat="index in pages">-->
 <div ng-repeat="article in articles">
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
@@ -22,11 +41,29 @@
                 <a href="#">waterzone</a>
             </span></p>
             <div class="article-actions">
-                <a class="btn btn-xs btn-primary" href="#">Edit this article</a>
-                <a class="btn btn-xs btn-danger" href="#">Delete this article</a>
+                <a class="btn btn-xs btn-primary" href="#/article/{{article._id}}/edit">Edit this article</a>
+                <a class="btn btn-xs btn-danger" ng-click="deleteArticle(article)" type="submit">Delete this article</a>
             </div>
 
         </div>
     </div>
 </div>
 </div>
+<!--</div>-->
+
+<nav align="center" style="margin-bottom: 10px">
+        <ul class="pagination">
+            <li>
+                <a ng-click="prev()" aria-label="Previous">
+                    <span aria-hidden="true">&#8592; Previous</span>
+                </a>
+            </li>
+            <li ng-repeat="page in pages"><a href="#list/{{page}}">{{page}}</a></li>
+            <li>
+                <a ng-click="next()" aria-label="Next">
+                    <span aria-hidden="true">Next &#8594;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

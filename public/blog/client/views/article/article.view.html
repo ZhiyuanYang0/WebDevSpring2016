@@ -30,13 +30,10 @@
         </span></p>
 
         <div class="article-actions">
-            <a class="btn btn-s btn-primary" href="#">Edit this article</a>
-            <a class="btn btn-s btn-danger" href="#">Delete this article</a>
+            <a class="btn btn-s btn-primary" href="#/article/{{article._id}}/edit">Edit this article</a>
+            <a class="btn btn-s btn-danger" ng-click="deleteArticle(article)">Delete this article</a>
             <a class="btn btn-s btn-success" href="#article">View all articles</a>
         </div>
     </div>
-
-
-
 
     </div>

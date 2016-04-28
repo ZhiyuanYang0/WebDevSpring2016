@@ -9,17 +9,27 @@
                             ArticleService){
 
         $scope.createArticle = createArticle;
+        $scope.addCategory = addCategory;
+        $scope.clearCategories = clearCategories;
+        $scope.topics = [];
 
         function init(){
             $scope.message = null;
             $scope.error = null;
+
+            ArticleService
+                .findAllCategories()
+                .then(function(response) {
+                    $scope.categories = response.data;
+                    console.log(response.data);
+                })
         }
         init();
 
         function createArticle(article) {
             console.log(article);
 
-            if (!article.title) {
+            if (!article || !article.title) {
                 $scope.error = "Please enter the title of the article.";
             } else if (article.title.length > 150) {
                 $scope.error = "The title is too long.";
@@ -34,6 +44,17 @@
                     })
             }
         }
+
+        function addCategory(category) {
+            if ($scope.topics.indexOf(category) == -1) {
+                $scope.topics.push(category);
+            }
+        }
+
+        function clearCategories() {
+            $scope.topics = [];
+        }
+
     }
 
 })();

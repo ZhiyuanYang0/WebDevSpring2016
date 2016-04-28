@@ -7,6 +7,7 @@
         var api = {
             createArticle: createArticle,
             updateArticle: updateArticle,
+            deleteArticle: deleteArticle,
             findAllArticles: findAllArticles,
             findArticleById: findArticleById,
 
@@ -40,6 +41,10 @@
         function createCategory(category) {
             console.log("I am at create category client side.");
             return $http.post('/api/createCategory', category);
+        }
+
+        function deleteArticle(article) {
+            return $http.delete('/api/article/'+article._id);
         }
     }
 })();

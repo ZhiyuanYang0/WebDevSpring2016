@@ -3,7 +3,7 @@
         .module("BlogApp")
         .controller("NavigationController", navigationController);
 
-    function navigationController($scope, $location, UserService) {
+    function navigationController($scope, $location, UserService, ArticleService) {
         var vm = this;
         $scope.subjects = ["good", "apple"];
 
@@ -11,6 +11,13 @@
 
         function init() {
             vm.$location = $location;
+
+            ArticleService
+                .findAllCategories()
+                .then(function(response) {
+                    vm.categories = response.data;
+                })
+
         }
         init();
 

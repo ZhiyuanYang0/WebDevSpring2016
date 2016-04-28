@@ -11,6 +11,7 @@
             register: register,
             logout: logout,
             getProfile: getProfile,
+            getDetails: getDetails,
 
             updateUserProfile : updateUserProfile,
             findAllUsers: findAllUsers,
@@ -19,6 +20,10 @@
             updateUser: updateUser
         };
         return api;
+
+        function getDetails(userId) {
+            return $http.get("/api/user/"+userId);
+        }
 
         function findAllUsers() {
             return $http.get("/api/user");

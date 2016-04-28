@@ -27,13 +27,10 @@
                     loggedin: checkCurrentUser
                 }
             })
-            .when("/profile/:username?", {
+            .when("/profile/:userId", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model",
-                resolve: {
-                    loggedin: checkLoggedin
-                }
+                controllerAs: "model"
             })
             .when("/updateprofile", {
                 templateUrl: "views/profile/edit.view.html",
@@ -73,6 +70,10 @@
             .when("/article/:articleId/edit", {
                 templateUrl: "views/article/edit.view.html",
                 controller: "EditController"
+            })
+            .when("/list/:page", {
+                templateUrl: "views/article/list.view.html",
+                controller: "ListController"
             })
             .when("/category", {
                 templateUrl: "views/category/category.view.html",

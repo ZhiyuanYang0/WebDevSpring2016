@@ -1,7 +1,7 @@
 <nav ng-controller="NavigationController as model">
 
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="background-color: black">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">STARFALL BLOG</a>
+                <a class="navbar-brand" href="#home">STARFALL BLOG</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,13 +27,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#category">All Categories</a></li>
-                            <li><a href="/categories/1">Leetcode OJ</a></li>
-                            <li><a href="/categories/2">Sports</a></li>
-                            <li><a href="/categories/3">Water Zone</a></li>
-                            <li><a href="/categories/4">Restaurant</a></li>
-                            <li><a href="/categories/5">Travel</a></li>
-                            <li><a href="/categories/6">NBA</a></li>
-                            <li><a href="/categories/7">Algorithms</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li ng-repeat="category in model.categories">
+                                    <a href="#category/{{category.category}}">
+                                {{category.category}}</a>
+                            </li>
                         </ul>
                         </ul>
                     </li>
@@ -50,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#updateprofile">Edit your profile</a></li>
-                            <li><a href="#profile">View your profile</a></li>
+                            <li><a href="#profile/{{currentUser._id}}">View your profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#user">Users</a></li>
                         </ul>
@@ -60,32 +58,4 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-
-
-
-    <ul class="nav nav-pills">
-        <li ng-class="{'active': model.$location.url() == '/home'}"><a href="#/home">Home</a></li>
-        <li ng-class="{'active': model.$location.url() == '/register'}"
-            ng-hide="currentUser">
-            <a href="#/register">Register</a>
-        </li>
-        <li ng-class="{'active': model.$location.url() == '/login'}"
-            ng-hide="currentUser">
-            <a href="#/login">Login</a>
-        </li>
-        <li ng-class="{'active': model.$location.url() == '/admin'}"
-            ng-show="currentUser">
-            <a href="#/admin">Admin</a>
-        </li>
-        <li ng-show="currentUser">
-            <a ng-click="model.logout()">Logout</a>
-        </li>
-        <li ng-class="{'active': model.$location.url().indexOf('/profile')>=0}"
-            ng-show="currentUser">
-            <a href="#/profile">Profile</a>
-        </li>
-        <li ng-class="{'active': model.$location.url() == '/search'}"><a href="#/search">Search</a></li>
-        <li ng-class="{'active': model.$location.url().indexOf('/details')>=0}"
-            ng-show="model.$location.url().indexOf('/details')>=0"><a>Details</a></li>
-    </ul>
 </nav>

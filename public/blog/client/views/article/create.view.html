@@ -18,6 +18,36 @@
                     <textarea ng-model="article.body" class="form-control" id="inputBody" rows="10"></textarea>
                 </div>
             </div>
+
+
+            <div ng-if="topics.length > 0" class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label">Categories: </label>
+                <div class="col-sm-8">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button ng-repeat="topic in topics" type="button" class="btn btn-default">{{topic}}</button>
+                    </div>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Categories
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="category in categories">
+                            <a ng-click="addCategory(category.category)" type="submit">{{category.category}}</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a ng-click="clearCategories()" type="submit">Clear all categories</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <button ng-click="createArticle(article)" type="submit" class="btn btn-default">Create Article</button>

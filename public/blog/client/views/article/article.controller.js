@@ -6,6 +6,7 @@
     function articleController($scope, ArticleService, $location, $routeParams){
         var articleId = $routeParams.articleId;
         $scope.articleId = articleId;
+        $scope.deleteArticle = deleteArticle;
 
         function init(){
             ArticleService
@@ -16,6 +17,16 @@
                 })
         }
         init();
+
+        function deleteArticle(article) {
+            console.log(article);
+            ArticleService
+                .deleteArticle(article)
+                .then(function(response) {
+                    $location.url("/article");
+                    $scope.message = "Successfully delete the article.";
+                })
+        }
 
     }
 
