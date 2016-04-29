@@ -58,6 +58,7 @@
                 ArticleService
                     .createArticle(article)
                     .then(function(response) {
+                        $location.url("/article");
                         $scope.message = "Successfully update the article.";
                     })
             }
