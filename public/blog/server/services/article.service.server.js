@@ -7,12 +7,26 @@ module.exports = function(app, articleModel, userModel, categoryModel) {
     //Category related services
     app.get('/api/category', findAllCategories);
     app.post ('/api/createCategory', createCategory);
+    app.get('/api/category/:category', findCategoryArticles);
 
     //User related services
     app.get('/api/user/:userId/article', findArticlesForUser);
 
+    function findCategoryArticles(req, res) {
+        var category = req.params.category;
+        articleModel
+            .findCategoryArticles(category)
+            .then(function(doc) {
+                //console.log("I am at find category articles server side.");
+                res.json(doc);
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+    }
+
     function findArticlesForUser(req, res) {
-        console.log("I am at find articles for user server side.");
+        //console.log("I am at find articles for user server side.");
         var userId = req.params.userId;
         articleModel
             .findArticlesForUser(userId)

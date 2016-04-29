@@ -30,7 +30,10 @@
             .when("/profile/:userId", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/updateprofile", {
                 templateUrl: "views/profile/edit.view.html",
@@ -57,41 +60,72 @@
             })
             .when("/article", {
                 templateUrl: "views/article/list.view.html",
-                controller: "ListController"
+                controller: "ListController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/createArticle", {
                 templateUrl: "views/article/create.view.html",
-                controller: "CreateController"
+                controller: "CreateController",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when("/article/:articleId", {
                 templateUrl: "views/article/article.view.html",
-                controller: "ArticleController"
+                controller: "ArticleController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/article/:articleId/edit", {
                 templateUrl: "views/article/edit.view.html",
-                controller: "EditController"
+                controller: "EditController",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when("/list/:page", {
                 templateUrl: "views/article/list.view.html",
-                controller: "ListController"
+                controller: "ListController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/category", {
                 templateUrl: "views/category/category.view.html",
-                controller: "CategoryController"
+                controller: "CategoryController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/category/:category", {
                 templateUrl: "views/category/list.view.html",
-                controller: "CategoryListController"
+                controller: "CategoryListController",
+                resolve: {
+                    loggedin: checkCurrentUser
+                }
             })
             .when("/createCategory", {
                 templateUrl: "views/category/edit.view.html",
-                controller: "EditCategoryController"
+                controller: "EditCategoryController",
+                resolve: {
+                    loggedin: checkAdmin
+                }
             })
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",
                 resolve: {
                     loggedin: checkAdmin
+                }
+            })
+            .when("/moviereview/:imdbId", {
+                templateUrl: "views/movie/review.view.html",
+                controller: "MovieReviewController",
+                resolve: {
+                    loggedin: checkLoggedin
                 }
             })
             .when("/about", {

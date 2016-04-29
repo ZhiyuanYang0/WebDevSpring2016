@@ -1,33 +1,47 @@
-<h2>Details</h2>
+<h1 align="center">Details</h1>
 
-<h3>{{model.data.Title}}</h3>
+<h2 align="center">{{model.data.Title}}</h2>
 
+<div align="center">
 <img ng-src="{{model.data.Poster}}"
-     height="200px"/>
-
+    />
+</div>
 <br/>
-<br/>
 
-<button class="btn btn-primary"
-        ng-click="model.favorite(model.data)">
+<div align="center">
+    <button class="btn btn-primary btn-lg"
+            ng-click="model.favorite(model.data)">
     <span ng-show="model.movie.likes.indexOf(currentUser._id) > -1"
           class="glyphicon glyphicon-star"></span>
     <span ng-show="!model.movie || !model.movie.likes || model.movie.likes.indexOf(currentUser._id) == -1"
           class="glyphicon glyphicon-star-empty"></span>
-</button>
+    </button>
+    <a href="#/moviereview/{{model.imdbId}}">
+        <button class="btn btn-primary btn-lg">Write a review about this film. </button>
+    </a>
+</div>
 
+<div align="center">
+
+</div>
+
+<div class="col-sm-offset-2 col-sm-8">
 <h4>Plot</h4>
 <p>
     {{model.data.Plot}}
 </p>
+</div>
 
+<div class="col-sm-offset-2 col-sm-8">
 <h4>Actors</h4>
 <ul>
     <li ng-repeat="actor in model.data.Actors.split(',')">
         {{actor}}
     </li>
 </ul>
+</div>
 
+<div class="col-sm-offset-2 col-sm-8">
 <div ng-if="model.movie.userLikes">
     <h4>Other Users that Like This Movie</h4>
     <ul>
@@ -38,3 +52,6 @@
         </li>
     </ul>
 </div>
+</div>
+
+<div class="clear"></div>

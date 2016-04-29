@@ -8,9 +8,14 @@ module.exports = function(db, mongoose) {
         deleteArticleById: deleteArticleById,
         findAllArticles: findAllArticles,
         findArticleById: findArticleById,
-        findArticlesForUser: findArticlesForUser
+        findArticlesForUser: findArticlesForUser,
+        findCategoryArticles: findCategoryArticles
     }
     return api;
+
+    function findCategoryArticles(category) {
+        return ArticleModel.find({categories: category})
+    }
 
     function findArticlesForUser(userId) {
         return ArticleModel.find({authorId: userId});

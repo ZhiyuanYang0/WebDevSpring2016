@@ -14,11 +14,16 @@
             //categories related api
             findAllCategories: findAllCategories,
             createCategory: createCategory,
+            findCategoryArticles: findCategoryArticles,
 
             //user related api
             findArticlesForUser: findArticlesForUser
         };
         return api;
+
+        function findCategoryArticles(category) {
+            return $http.get('/api/category/'+category)
+        }
 
         function createArticle(article) {
             console.log("I am at create article client service.");

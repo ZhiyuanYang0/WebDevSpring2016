@@ -1,4 +1,4 @@
-<h1>Article</h1>
+<h1 align="center">Article</h1>
 
 <div class="container">
 
@@ -23,11 +23,44 @@
         <h4 class="center description"><strong>Description</strong></h4>
         <hr>
 
+        <div ng-if="data">
+        <div class="col" style="margin-top: 20px;">
+            <div class="col-sm-offset-1 col-sm-4">
+                <img ng-src="{{data.Poster}}" height="250px"/>
+            </div>
+
+            <div class="col-sm-6">
+                <h4>Plot</h4>
+                <p>
+                    {{data.Plot}}
+                </p>
+            </div>
+
+            <div class="col-sm-6">
+                <h4>Actors</h4>
+                <ul>
+                    <li ng-repeat="actor in data.Actors.split(',')">
+                        {{actor}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div style="margin-top: 30px"></div>
+            <hr>
+        </div>
+
         <div ng-bind-html="content"></div>
 
+        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
         <p>Categories: <span class="badge" ng-repeat="category in article.categories">
-            <a href="#category">{{category}}</a> &nbsp;
-        </span></p>
+                <a href="#">{{category}}</a>
+            </span></p>
 
         <div class="article-actions">
             <a class="btn btn-s btn-primary" href="#/article/{{article._id}}/edit">Edit this article</a>

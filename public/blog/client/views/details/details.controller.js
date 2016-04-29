@@ -13,8 +13,10 @@
         var imdbID = $routeParams.imdbID;
         var currentUser = $rootScope.currentUser;
         vm.favorite = favorite;
+        vm.imdbId = imdbID;
 
         function init() {
+
             OmdbService
                 .findMovieByImdbID (imdbID)
                 .then(function(response){
@@ -37,5 +39,6 @@
                 $location.url("/login");
             }
         }
+
     }
 })();

@@ -1,13 +1,26 @@
-<h2>Seach</h2>
+<h2 align="center" style="margin-bottom: 25px">Seach</h2>
 
-<input ng-model="model.movie.title"
-       class="form-control"
-       placeholder="Batman"/>
+<form class="form-horizontal">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8" style="margin-bottom: 10px">
+            <input ng-model="model.movie.title"
+                   class="form-control"
+                   placeholder="Batman"
+                   id="inputMovie"/>
 
-<button ng-click="model.search(model.movie)"
-        class="btn btn-primary btn-block">
-    Search
-</button>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-8">
+        <button ng-click="model.search(model.movie)"
+                class="btn btn-primary btn-block">
+            Search
+        </button>
+        </div>
+    </div>
+</form>
+
+
+
 
 <div ng-if="model.data">
     <h3>Search Results</h3>
