@@ -15,11 +15,16 @@
 
             updateUserProfile : updateUserProfile,
             findAllUsers: findAllUsers,
+            findUserById: findUserById,
             createUser: createUser,
             deleteUser: deleteUser,
             updateUser: updateUser
         };
         return api;
+
+        function findUserById(userId) {
+            return $http.get("/api/findUser/"+userId);
+        }
 
         function getDetails(userId) {
             return $http.get("/api/user/"+userId);

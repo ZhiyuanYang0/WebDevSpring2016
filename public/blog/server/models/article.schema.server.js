@@ -1,7 +1,7 @@
 module.exports = function(mongoose) {
 
     var ArticleSchema = new mongoose.Schema({
-        author: String,
+        authorId: String,
         createTime: {type: Date, default: Date.now},
         updateTime: {type: Date, default: Date.now},
         title: String,

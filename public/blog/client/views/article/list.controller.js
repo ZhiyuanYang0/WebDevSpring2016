@@ -3,7 +3,7 @@
         .module("BlogApp")
         .controller("ListController", listController);
 
-    function listController($scope, ArticleService, $location, $routeParams){
+    function listController($scope, ArticleService, $location, $routeParams, $sce){
         var allpage;
         var page;
         var newpage;
@@ -25,8 +25,6 @@
                     var lists = response.data;
                     //console.log(lists);
                     allpage = Math.floor(lists.length / 5);
-                    console.log(lists);
-                    console.log("allpage = " + allpage);
                     var pages = [];
                     for (var j = 0; j <= allpage; j++) {
                         pages.push(j + 1);
@@ -38,14 +36,15 @@
                         if (!lists[i]) {
                             break;
                         }
+                        if (lists[i].body.length > 150) {
+                            lists[i].body = lists[i].body.substring(0, 150);
+                        }
+                        lists[i].body = $sce.trustAsHtml(lists[i].body);
                         $scope.articles.push(lists[i]);
                     }
 
                     $scope.pages = pages;
 
-                    console.log($scope.articles);
-
-                    console.log(pages);
                 })
         }
         init();
@@ -67,12 +66,11 @@
         }
 
         function deleteArticle(article) {
-            console.log(article);
             ArticleService
                 .deleteArticle(article)
                 .then(function(response) {
+                    console.log(response);
                     init();
-                    $scope.message = "Successfully delete the article.";
                 })
         }
     }

@@ -3,7 +3,7 @@
         .module("BlogApp")
         .controller("ArticleController", articleController);
 
-    function articleController($scope, ArticleService, $location, $routeParams){
+    function articleController($scope, ArticleService, $location, $routeParams, $sce){
         var articleId = $routeParams.articleId;
         $scope.articleId = articleId;
         $scope.deleteArticle = deleteArticle;
@@ -13,6 +13,8 @@
                 .findArticleById(articleId)
                 .then(function(response) {
                     $scope.article = response.data;
+                    var content = $scope.article.body;
+                    $scope.content  = $sce.trustAsHtml(content);
                     console.log($scope.article.title);
                 })
         }
@@ -27,6 +29,8 @@
                     $scope.message = "Successfully delete the article.";
                 })
         }
+
+
 
     }
 

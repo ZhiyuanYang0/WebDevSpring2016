@@ -23,10 +23,10 @@
         <h4 class="center description"><strong>Description</strong></h4>
         <hr>
 
-        <p>{{article.body}}</p>
+        <div ng-bind-html="content"></div>
 
-        <p>Categories: <span class="badge">
-            <a href="/categories/3">Water Zone</a> &nbsp;
+        <p>Categories: <span class="badge" ng-repeat="category in article.categories">
+            <a href="#category">{{category}}</a> &nbsp;
         </span></p>
 
         <div class="article-actions">

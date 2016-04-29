@@ -13,7 +13,10 @@
 
             //categories related api
             findAllCategories: findAllCategories,
-            createCategory: createCategory
+            createCategory: createCategory,
+
+            //user related api
+            findArticlesForUser: findArticlesForUser
         };
         return api;
 
@@ -45,6 +48,10 @@
 
         function deleteArticle(article) {
             return $http.delete('/api/article/'+article._id);
+        }
+
+        function findArticlesForUser(userId) {
+            return $http.get('/api/user/'+userId+'/article');
         }
     }
 })();

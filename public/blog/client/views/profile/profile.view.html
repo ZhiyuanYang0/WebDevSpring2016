@@ -1,7 +1,38 @@
-<h2>Profile</h2>
+<h2 align="center">{{model.user.username}}'s Profile</h2>
 
-{{model.profile}}
+<div ng-repeat="article in model.articles">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="well well-lg">
+                <div class="article-title">
+                    <a href="#/article/{{article._id}}">{{article.title}}</a>
+                </div>
 
+
+                    <div class="article-meta-details">
+                        <small>
+                            Created by: Starfall,
+                            about 2 months ago,
+                            last updated: 20days ago
+                        </small>
+                    </div>
+
+                <p>Categories: <span class="badge" ng-repeat="category in article.categories">
+                <a href="#">{{category}}</a>
+            </span></p>
+                <div class="article-actions">
+                    <a class="btn btn-xs btn-primary" href="#/article/{{article._id}}/edit">Edit this article</a>
+                    <a class="btn btn-xs btn-danger" ng-click="model.deleteArticle(article)" type="submit">Delete this article</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
 <div ng-if="model.profile.likesMovies.length">
 
     <h3>Movies I Like</h3>
@@ -21,5 +52,7 @@
     </div>
 
 </div>
+        </div>
+    </div>
 
 <div class="clear"></div>

@@ -12,6 +12,7 @@ module.exports = function(app, movieModel, userModel) {
     app.get   ('/api/loggedin',       loggedin);
     app.get("/api/project/blog/profile/:userId", profile);
     app.get('/api/user/:userId', userProfile);
+    app.get("/api/findUser/:userId", findUserById);
 
     app.put('/api/assignment/user/:id', updateUserById);
 
@@ -56,8 +57,19 @@ module.exports = function(app, movieModel, userModel) {
             );
     }
 
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(function(user) {
+                res.json(user);
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+    }
+
     function userProfile(req, res) {
-        console.log("I am at user profile server side.");
         var userId = req.params.userId;
         var user = null;
 

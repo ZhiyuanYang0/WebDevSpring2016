@@ -79,6 +79,10 @@
                 templateUrl: "views/category/category.view.html",
                 controller: "CategoryController"
             })
+            .when("/category/:category", {
+                templateUrl: "views/category/list.view.html",
+                controller: "CategoryListController"
+            })
             .when("/createCategory", {
                 templateUrl: "views/category/edit.view.html",
                 controller: "EditCategoryController"
@@ -95,10 +99,10 @@
                 resolve: {
                     loggedin: checkCurrentUser
                 }
+            })
+            .otherwise({
+                redirectTo: "/home"
             });
-            //.otherwise({
-            //    redirectTo: "/home"
-            //});
     }
 
     var checkAdmin = function($q, $timeout, $http, $location, $rootScope)

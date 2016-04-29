@@ -26,7 +26,7 @@
                 .then(function(response){
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
-                        $location.url("/profile");
+                        $location.url("/profile/" + response.data._id);
                     } else {
                         vm.error = "There is no such username and password pair.";
                     }

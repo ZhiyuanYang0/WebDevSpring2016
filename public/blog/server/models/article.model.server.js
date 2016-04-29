@@ -7,9 +7,14 @@ module.exports = function(db, mongoose) {
         createArticle: createArticle,
         deleteArticleById: deleteArticleById,
         findAllArticles: findAllArticles,
-        findArticleById: findArticleById
+        findArticleById: findArticleById,
+        findArticlesForUser: findArticlesForUser
     }
     return api;
+
+    function findArticlesForUser(userId) {
+        return ArticleModel.find({authorId: userId});
+    }
 
     function createArticle(article) {
         return ArticleModel.create(article);

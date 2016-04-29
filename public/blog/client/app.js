@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("BlogApp", ["ngRoute"]);
+        .module("BlogApp", ["ngRoute", "textAngular"]);
 })();

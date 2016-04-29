@@ -14,6 +14,10 @@
         $scope.topics = [];
 
         function init(){
+            var currentUser = UserService.getCurrentUser();
+            if (!currentUser) {
+                $location.url("#login");
+            }
             $scope.message = null;
             $scope.error = null;
 
@@ -21,13 +25,12 @@
                 .findAllCategories()
                 .then(function(response) {
                     $scope.categories = response.data;
-                    console.log(response.data);
                 })
         }
         init();
 
         function createArticle(article) {
-            console.log(article);
+            article.categories = $scope.topics;
 
             if (!article || !article.title) {
                 $scope.error = "Please enter the title of the article.";
@@ -36,10 +39,11 @@
             } else if (article.body.length < 1) {
                 $scope.error = "The article is too short.";
             } else {
+                article.authorId = UserService.getCurrentUser()._id;
+
                 ArticleService
                     .createArticle(article)
                     .then(function(response) {
-                        console.log(response.data);
                         $scope.message = "Successfully update the article.";
                     })
             }

@@ -8,8 +8,23 @@ module.exports = function(app, articleModel, userModel, categoryModel) {
     app.get('/api/category', findAllCategories);
     app.post ('/api/createCategory', createCategory);
 
+    //User related services
+    app.get('/api/user/:userId/article', findArticlesForUser);
+
+    function findArticlesForUser(req, res) {
+        console.log("I am at find articles for user server side.");
+        var userId = req.params.userId;
+        articleModel
+            .findArticlesForUser(userId)
+            .then(function(doc) {
+                res.json(doc);
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+    }
+
     function deleteArticle(req, res) {
-        console.log("I am at delete article server side.");
         var articleId = req.params.articleId;
         articleModel
             .deleteArticleById(articleId)
@@ -25,8 +40,6 @@ module.exports = function(app, articleModel, userModel, categoryModel) {
 
     function createArticle(req, res) {
         var article = req.body;
-        console.log("I am at createArticle server side.");
-        console.log(article);
         articleModel
             .createArticle(article)
             .then(
@@ -40,7 +53,6 @@ module.exports = function(app, articleModel, userModel, categoryModel) {
     }
 
     function createCategory(req, res) {
-        console.log("I am at createCategory server side.");
         var category = req.body;
         categoryModel
             .createCategory(category)
