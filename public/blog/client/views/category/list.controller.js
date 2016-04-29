@@ -12,6 +12,7 @@
         $scope.category = $routeParams.category;
         $scope.isAuthor = isAuthor;
         $scope.currentUser = UserService.getCurrentUser();
+        //$scope.findAuthor = findAuthor;
 
         function init() {
             ArticleService
@@ -30,6 +31,18 @@
                 return true;
             }
         }
+
+        //function findAuthor(article) {
+        //    var username;
+        //    UserService
+        //        .findUserById(article.authorId)
+        //        .then(function(response) {
+        //            username = response.data;
+        //            console.log(username);
+        //        })
+        //
+        //    return username;
+        //}
 
     }
 
