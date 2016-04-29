@@ -25,7 +25,7 @@
             ArticleService
                 .findAllArticles()
                 .then(function(response) {
-                    var lists = response.data;
+                    var lists = response.data.reverse();
                     //console.log(lists);
                     allpage = Math.floor(lists.length / 5);
                     var pages = [];

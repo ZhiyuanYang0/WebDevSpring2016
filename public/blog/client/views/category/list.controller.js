@@ -18,7 +18,7 @@
                 .findCategoryArticles($scope.category)
                 .then(function(response) {
                     //console.log(response.data);
-                    $scope.articles = response.data;
+                    $scope.articles = response.data.reverse();
                 })
         }
         init();
