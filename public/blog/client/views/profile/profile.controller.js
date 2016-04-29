@@ -18,7 +18,6 @@
                 .getDetails(userId)
                 .then(function(response) {
                     vm.profile = response.data;
-                    //console.log(vm.profile);
                 })
 
             findArticlesForUser(userId);
@@ -36,7 +35,7 @@
             ArticleService
                 .findArticlesForUser(userId)
                 .then(function(response) {
-                    console.log(response.data);
+                    //console.log(response.data);
                     vm.articles = response.data;
                 })
         }
@@ -45,7 +44,7 @@
             ArticleService
                 .deleteArticle(article)
                 .then(function(response) {
-                    console.log(response);
+                    //console.log(response);
                     init();
                 })
         }

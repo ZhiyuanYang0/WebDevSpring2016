@@ -7,18 +7,30 @@
                                     ArticleService,
                                     $location,
                                     $routeParams,
-                                    $sce) {
+                                    $sce,
+                                    UserService) {
         $scope.category = $routeParams.category;
+        $scope.isAuthor = isAuthor;
+        $scope.currentUser = UserService.getCurrentUser();
 
         function init() {
             ArticleService
                 .findCategoryArticles($scope.category)
                 .then(function(response) {
-                    console.log(response.data);
+                    //console.log(response.data);
                     $scope.articles = response.data;
                 })
         }
         init();
+
+        function isAuthor(article) {
+            if (!$scope.currentUser || article.authorId != $scope.currentUser._id) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
     }
 
 })();

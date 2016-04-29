@@ -3,13 +3,16 @@
         .module("BlogApp")
         .controller("ListController", listController);
 
-    function listController($scope, ArticleService, $location, $routeParams, $sce){
+    function listController($scope, ArticleService, $location, $routeParams, $sce,
+                            UserService){
         var allpage;
         var page;
         var newpage;
         $scope.next = next;
         $scope.prev = prev;
         $scope.deleteArticle = deleteArticle;
+        $scope.isAuthor = isAuthor;
+        $scope.currentUser = UserService.getCurrentUser();
 
         function init(){
             $scope.pages = [];
@@ -48,6 +51,14 @@
                 })
         }
         init();
+
+        function isAuthor(article) {
+            if (!$scope.currentUser || article.authorId != $scope.currentUser._id) {
+                return false;
+            } else {
+                return true;
+            }
+        }
 
         function next() {
             newpage = page;

@@ -17,9 +17,14 @@
             findCategoryArticles: findCategoryArticles,
 
             //user related api
-            findArticlesForUser: findArticlesForUser
+            findArticlesForUser: findArticlesForUser,
+            findUserArticlesNumber: findUserArticlesNumber
         };
         return api;
+
+        function findUserArticlesNumber(userId) {
+            return $http.get('/api/user/'+userId+'/article/num');
+        }
 
         function findCategoryArticles(category) {
             return $http.get('/api/category/'+category)

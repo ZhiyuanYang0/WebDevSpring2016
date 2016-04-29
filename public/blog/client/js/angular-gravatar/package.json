@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      "angular-gravatar",
+      "/Users/Samuel/Desktop/Web/workspace/cs5610spring2016"
+    ]
+  ],
+  "_from": "angular-gravatar@*",
+  "_id": "angular-gravatar@0.4.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular-gravatar",
+  "_npmUser": {
+    "email": "sebastian.wallin@gmail.com",
+    "name": "wallin"
+  },
+  "_npmVersion": "1.4.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-gravatar",
+    "raw": "angular-gravatar",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-gravatar/-/angular-gravatar-0.4.1.tgz",
+  "_shasum": "71597664fe85a7c9649b61a17d0df8a4521365bc",
+  "_shrinkwrap": null,
+  "_spec": "angular-gravatar",
+  "_where": "/Users/Samuel/Desktop/Web/workspace/cs5610spring2016",
+  "author": {
+    "name": "Sebastian Wallin"
+  },
+  "bugs": {
+    "url": "https://github.com/wallin/angular-gravatar/issues"
+  },
+  "dependencies": {},
+  "description": "Angular.JS directive for gravatar images",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-coffeelint": "0.0.10",
+    "grunt-contrib-coffee": "0.10.1",
+    "grunt-contrib-concat": "0.5.1",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-uglify": "0.5.0",
+    "grunt-karma": "0.8.3",
+    "jshint-stylish": "0.2.0",
+    "karma": "0.12.16",
+    "karma-coverage": "0.2.4",
+    "karma-jasmine": "0.1.5",
+    "karma-phantomjs-launcher": "0.1.4",
+    "matchdep": "0.3.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "71597664fe85a7c9649b61a17d0df8a4521365bc",
+    "tarball": "https://registry.npmjs.org/angular-gravatar/-/angular-gravatar-0.4.1.tgz"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "homepage": "https://github.com/wallin/angular-gravatar",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "gravatar"
+  ],
+  "license": "MIT",
+  "main": "./build/angular-gravatar.js",
+  "maintainers": [
+    {
+      "name": "wallin",
+      "email": "sebastian.wallin@gmail.com"
+    }
+  ],
+  "name": "angular-gravatar",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "grunt-cli": "0.1.13"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wallin/angular-gravatar.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "version": "0.4.1"
+}

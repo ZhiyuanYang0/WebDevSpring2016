@@ -10,12 +10,18 @@
             <div class="row center">
                 <div class="col-md-4 col-md-offset-4">
                     <li>Created by:</li>
-                    <li><a href="/users/1"><img alt="Starfall" class="img-circle" src="https://secure.gravatar.com/avatar/69b6778a22d5604808192a5e986212d9?s=80" /></a></li>
+                    <li>
+                        <a href="#profile/{{author._id}}">
+                            <img gravatar-src="author.email" gravatar-size="100" class="img-circle">
+                        <!--<img alt="Starfall" class="img-circle"-->
+                             <!--src="https://secure.gravatar.com/avatar/69b6778a22d5604808192a5e986212d9?s=80" />-->
+                         </a>
+                    </li>
                     <li class="article-title">
-                        <a href="/users/1">Starfall</a>
+                        <a href="#profile/{{author._id}}">{{author.username}}</a>
                     </li>
                     <li>
-                        <small>6 articles</small>
+                        <small>{{number}} articles</small>
                     </li>
                 </div>
             </div>

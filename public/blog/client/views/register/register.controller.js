@@ -27,6 +27,10 @@
                 return;
             }
 
+            if (!user.email) {
+                user.email = "zhiyuanyang0@gmail.com";
+            }
+
             UserService
                 .register(user)
                 .then(

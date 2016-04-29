@@ -11,6 +11,19 @@ module.exports = function(app, articleModel, userModel, categoryModel) {
 
     //User related services
     app.get('/api/user/:userId/article', findArticlesForUser);
+    app.get('/api/user/:userId/article/num', findUserArticlesNumber);
+
+    function findUserArticlesNumber(req, res) {
+        var userId = req.params.userId;
+        articleModel
+            .findUserArticlesNumber(userId)
+            .then(function(doc){
+                res.json(doc);
+            },
+            function(err){
+                res.status(400).send(err);
+            })
+    }
 
     function findCategoryArticles(req, res) {
         var category = req.params.category;

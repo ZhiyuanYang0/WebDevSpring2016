@@ -23,8 +23,13 @@
                 <a href="#">{{category}}</a>
             </span></p>
                 <div class="article-actions">
-                    <a class="btn btn-xs btn-primary" href="#/article/{{article._id}}/edit">Edit this article</a>
-                    <a class="btn btn-xs btn-danger" ng-click="deleteArticle(article)" type="submit">Delete this article</a>
+                    <a ng-show="isAuthor(article)" class="btn btn-xs btn-primary"
+                       href="#/article/{{article._id}}/edit">
+                        Edit this article</a>
+                    <a ng-show="currentUser.roles.indexOf('admin') >= 0" class="btn btn-xs btn-danger"
+                       ng-click="deleteArticle(article)" type="submit">
+                        Delete this article
+                    </a>
                 </div>
 
             </div>

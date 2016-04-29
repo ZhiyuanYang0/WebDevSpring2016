@@ -17,9 +17,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#article">Articles</a></li>
-                    <li><a href="#search">Movies</a> </li>
-                    <li><a href="#createArticle">New Article</a></li>
+                    <li ng-class="{'active': $location.url() == '/article'}"><a href="#article">Articles</a></li>
+                    <li ng-class="{'active': $location.url() == '/search'}"><a href="#search">Movies</a> </li>
+                    <li ng-show="currentUser" ng-class="{'active': $location.url() == '/createArticle'}">
+                        <a href="#createArticle">New Article</a>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">
@@ -38,8 +40,12 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-show="!currentUser" href="#login">Log in</a></li>
-                    <li><a ng-show="!currentUser" href="#register">Register</a></li>
+                    <li ng-class="{'active': $location.url() == '/login'}">
+                        <a ng-show="!currentUser" href="#login">Log in</a>
+                    </li>
+                    <li ng-class="{'active': $location.url() == '/register'}">
+                        <a ng-show="!currentUser" href="#register">Register</a>
+                    </li>
                     <li><a ng-show="currentUser" ng-click="model.logout()">Log out</a></li>
                     <li class="dropdown">
                         <a ng-show="currentUser" class="dropdown-toggle" data-toggle="dropdown"
@@ -49,9 +55,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="#updateprofile">Edit your profile</a></li>
                             <li><a href="#profile/{{currentUser._id}}">View your profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#user">Users</a></li>
-                            <li><a href="#admin">Admin</a></li>
+                            <li ng-show="currentUser.roles.indexOf('admin') >= 0" role="separator" class="divider"></li>
+                            <li ng-show="currentUser.roles.indexOf('admin') >= 0"><a href="#admin">Admin</a></li>
                         </ul>
                     </li>
                 </ul>

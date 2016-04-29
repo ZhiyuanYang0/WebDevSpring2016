@@ -45,6 +45,7 @@
                     .createArticle(article)
                     .then(function(response) {
                         $scope.message = "Successfully update the article.";
+                        $location.url("/article");
                     })
             }
         }

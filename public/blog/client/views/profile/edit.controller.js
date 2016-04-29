@@ -36,6 +36,7 @@
                         $scope.currentUser = UserService.getCurrentUser();
                         $scope.message = "Successfully update the profile";
                         $location.url("/updateprofile");
+                        console.log(response.data);
                         init();
                     }
                 });
